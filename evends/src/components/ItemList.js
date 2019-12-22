@@ -1,5 +1,9 @@
 import React from "react";
 
+import Navbar from "./Navbar";
+import ItemCard from "./ItemCard";
+
+
 const ItemList = () => {
     return(
         <div>
