@@ -1,7 +1,6 @@
 import React from "react";
-
-import Navbar from "./Navbar";
-import ItemCard from "./ItemCard/ItemCard";
+import Navbar from "../Navbar/Navbar";
+import ItemCard from "../ItemCard/ItemCard";
 
 
 const ItemList = () => {
