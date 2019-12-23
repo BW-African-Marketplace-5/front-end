@@ -5,6 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url('./imgs/background.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+a{
+  text-decoration: none;
+  text-transform: uppercase;
+  color:white;
+}
+a:hover{
+  color:white;
 }
 
 code {

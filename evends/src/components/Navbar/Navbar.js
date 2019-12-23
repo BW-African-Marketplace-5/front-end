@@ -1,10 +1,20 @@
 import React from "react";
-
+import {Link} from 'react-router-dom';
+import { Nav, NavItem, NavLink } from 'reactstrap';
+import {Navigation} from './Navbar_Styles';
 const Navbar = () => {
     return(
-        <div>
-            <h1>Asuh, World</h1>
-        </div>
+        <Navigation>
+        <NavItem>
+          <NavLink href="#">Home</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">Login</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">Register</NavLink>
+        </NavItem>
+        </Navigation>
     );
 }
 
