@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import {Wrapper, Form_S, FormGroup_S} from './Login_Register_Styles';
+import {Wrapper, Form_S, FormGroup_S, Logo, Title} from './Login_Register_Styles';
 import {Link} from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 
@@ -9,8 +9,9 @@ const Login_Register = () => {
         <>
         <Navbar/>
         <Wrapper>
-            <h1>Login or Register</h1>
+            <Logo src='/evends.png'></Logo>
             <Form_S>
+            <Title>Welcome To Evends</Title>
                 <FormGroup_S>
                     <Input
                         id='username'

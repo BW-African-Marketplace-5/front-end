@@ -19,3 +19,11 @@ export const Wrapper = styled.div`
     align-items:center;
     flex-direction:column;
 `
+
+export const Logo = styled.img`
+    width:300px;
+`
+export const Title = styled.h1`
+    color:white;
+    font-weight:bold;
+`
