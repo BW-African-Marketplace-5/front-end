@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import {Wrapper, Form_S, FormGroup_S} from './Login_Register_Styles';
+import {Link} from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 
 const Login_Register = () => {
@@ -29,7 +30,7 @@ const Login_Register = () => {
                 <FormGroup_S>
                     <Button>Login</Button>
                     <p>or</p>
-                    <Button>Register</Button>
+                    <Link>Register</Link>
                 </FormGroup_S>
            
        </Form_S>
