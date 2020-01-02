@@ -63,13 +63,27 @@ if (Login === 'Login'){
                 <Links onClick={Register}>Register</Links>
             </TopBar>
             <Form>
-            <Title>Register Now</Title>
+            <Title>Register</Title>
                 <FormGroup_S>
                     <Input
-                        id='username'
+                        id='Name'
                         type='text'
-                        name='username'
-                        placeholder='Enter Username'
+                        name='Name'
+                        placeholder='Name'
+                    />
+                      <Input
+                        id='LastName'
+                        type='text'
+                        name='LastName'
+                        placeholder='Last Name'
+                    />
+                </FormGroup_S>
+                <FormGroup_S>
+                    <Input 
+                        type="email" 
+                        name="email" 
+                        id="email" 
+                        placeholder="Email" 
                     />
                 </FormGroup_S>
                 <FormGroup_S>
@@ -77,7 +91,15 @@ if (Login === 'Login'){
                         type="password" 
                         name="password" 
                         id="password" 
-                        placeholder="Enter Password" 
+                        placeholder="Password" 
+                    />
+                </FormGroup_S>
+                <FormGroup_S>
+                    <Input 
+                        type="password" 
+                        name="validate_password" 
+                        id="validate_password" 
+                        placeholder="Confirm Password" 
                     />
                 </FormGroup_S>
                 <FormGroup_S>
