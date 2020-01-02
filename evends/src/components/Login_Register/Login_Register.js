@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { Button, FormGroup, Label, Input, FormText } from 'reactstrap';
-import {Wrapper, FormWrapper, Links, TopBar, Form, FormGroup_S, Logo, Title} from './Login_Register_Styles';
+import {Wrapper, FormWrapper, Links, TopBar, Form, FormGroupS, Logo, Title} from './Login_Register_Styles';
 import Navbar from '../Navbar/Navbar';
+import Footer from "../Footer/Footer";
 
 const Login_Register = () => {
 
@@ -21,34 +22,36 @@ if (Login === 'Login'){
             <FormWrapper>
             <Logo src='/evends.png'></Logo>
             <TopBar>
-                <Links onClick={Login_set}>Login</Links>
-                <Links onClick={Register}>Register</Links>
+                <Links to ='/' onClick={Login_set}>Login</Links>
+                <Links to ='/' onClick={Register}>Register</Links>
             </TopBar>
             <Form>
             <Title>Login To Evends</Title>
-                <FormGroup_S>
+                <FormGroupS>
                     <Input
                         id='username'
                         type='text'
                         name='username'
                         placeholder='Enter Username'
                     />
-                </FormGroup_S>
-                <FormGroup_S>
+                </FormGroupS>
+                <FormGroupS>
                     <Input 
                         type="password" 
                         name="password" 
                         id="password" 
                         placeholder="Enter Password" 
                     />
-                </FormGroup_S>
-                <FormGroup_S>
+                </FormGroupS>
+                <FormGroupS>
                     <Button>{Login}</Button>
-                </FormGroup_S>
+                </FormGroupS>
            
-       </Form>
+                </Form>
              </FormWrapper>
         </Wrapper>
+    <Footer/>
+       
        </>
     );
 } else{
@@ -59,12 +62,12 @@ if (Login === 'Login'){
             <FormWrapper>
             <Logo src='/evends.png'></Logo>
             <TopBar>
-                <Links onClick={Login_set}>Login</Links>
-                <Links onClick={Register}>Register</Links>
+                <Links to ='/' onClick={Login_set}>Login</Links>
+                <Links to ='/' onClick={Register}>Register</Links>
             </TopBar>
             <Form>
             <Title>Register</Title>
-                <FormGroup_S>
+                <FormGroupS>
                     <Input
                         id='Name'
                         type='text'
@@ -77,38 +80,39 @@ if (Login === 'Login'){
                         name='LastName'
                         placeholder='Last Name'
                     />
-                </FormGroup_S>
-                <FormGroup_S>
+                </FormGroupS>
+                <FormGroupS>
                     <Input 
                         type="email" 
                         name="email" 
                         id="email" 
                         placeholder="Email" 
                     />
-                </FormGroup_S>
-                <FormGroup_S>
+                </FormGroupS>
+                <FormGroupS>
                     <Input 
                         type="password" 
                         name="password" 
                         id="password" 
                         placeholder="Password" 
                     />
-                </FormGroup_S>
-                <FormGroup_S>
+                </FormGroupS>
+                <FormGroupS>
                     <Input 
                         type="password" 
                         name="validate_password" 
                         id="validate_password" 
                         placeholder="Confirm Password" 
                     />
-                </FormGroup_S>
-                <FormGroup_S>
+                </FormGroupS>
+                <FormGroupS>
                     <Button>{Login}</Button>
-                </FormGroup_S>
+                </FormGroupS>
            
-       </Form>
-             </FormWrapper>
-        </Wrapper>
+            </Form>
+        </FormWrapper>
+    </Wrapper>
+<Footer/>
        </>
     );
 }

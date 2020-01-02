@@ -24,16 +24,15 @@ export const Links = styled(Link)`
 `
 export const FormWrapper = styled.div`
     width:30%
-    margin: 10% 0;
+    padding: 5% 0;
 
 `
-export const FormGroup_S = styled(FormGroup)`
+export const FormGroupS = styled(FormGroup)`
     display:flex;
     justify-content:center;
     align-items:center;
 `
 export const Wrapper = styled.div`
-    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -41,7 +40,7 @@ export const Wrapper = styled.div`
 `
 
 export const Logo = styled.img`
-    width:300px;
+    width:200px;
 `
 export const Title = styled.h1`
     color:white;
