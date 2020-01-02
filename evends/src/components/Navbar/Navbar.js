@@ -1,18 +1,20 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import { Nav, NavItem, NavLink } from 'reactstrap';
-import {Navigation} from './Navbar_Styles';
+import {Navigation, Logo, MenuLink} from './Navbar_Styles';
 const Navbar = () => {
     return(
+  
         <Navigation>
+        <Logo src='/evends.png'></Logo> 
         <NavItem>
-          <NavLink href="#">Home</NavLink>
+          <MenuLink href="#">Home</MenuLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Login</NavLink>
+          <MenuLink href="#">Login</MenuLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Register</NavLink>
+          <MenuLink href="#">Register</MenuLink>
         </NavItem>
         </Navigation>
     );
