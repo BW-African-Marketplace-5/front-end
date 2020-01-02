@@ -1,26 +1,30 @@
 import React, {useState} from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import {Wrapper, Form_S, FormGroup_S, Logo, Title} from './Login_Register_Styles';
-import {Link} from 'react-router-dom';
+import { Button, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {Wrapper, FormWrapper, Links, TopBar, Form, FormGroup_S, Logo, Title} from './Login_Register_Styles';
 import Navbar from '../Navbar/Navbar';
 
 const Login_Register = () => {
 
-const [Login, setLogin] = useState(true);
+const [Login, setLogin] = useState('Login');
 
 const Register = () =>{
-    setLogin(false)
+    setLogin('Register')
 }
 const Login_set = () =>{
-    setLogin(true)
+    setLogin('Login')
 }
-if (Login === true){
+if (Login === 'Login'){
     return(
         <>
         <Navbar/>
         <Wrapper>
+            <FormWrapper>
             <Logo src='/evends.png'></Logo>
-            <Form_S>
+            <TopBar>
+                <Links onClick={Login_set}>Login</Links>
+                <Links onClick={Register}>Register</Links>
+            </TopBar>
+            <Form>
             <Title>Login To Evends</Title>
                 <FormGroup_S>
                     <Input
@@ -39,12 +43,11 @@ if (Login === true){
                     />
                 </FormGroup_S>
                 <FormGroup_S>
-                    <Button onClick={Login_set}>Login</Button>
-                    <span style={{margin:'0px 5px'}}>or</span>
-                    <Button onClick={Register}>Register</Button>
+                    <Button>{Login}</Button>
                 </FormGroup_S>
            
-       </Form_S>
+       </Form>
+             </FormWrapper>
         </Wrapper>
        </>
     );
@@ -53,9 +56,14 @@ if (Login === true){
         <>
         <Navbar/>
         <Wrapper>
+            <FormWrapper>
             <Logo src='/evends.png'></Logo>
-            <Form_S>
-            <Title>Register For Evends</Title>
+            <TopBar>
+                <Links onClick={Login_set}>Login</Links>
+                <Links onClick={Register}>Register</Links>
+            </TopBar>
+            <Form>
+            <Title>Register Now</Title>
                 <FormGroup_S>
                     <Input
                         id='username'
@@ -73,12 +81,11 @@ if (Login === true){
                     />
                 </FormGroup_S>
                 <FormGroup_S>
-                    <Button onClick={Login_set}>Login</Button>
-                    <span style={{margin:'0px 5px'}}>or</span>
-                    <Button onClick={Register}>Register</Button>
+                    <Button>{Login}</Button>
                 </FormGroup_S>
            
-       </Form_S>
+       </Form>
+             </FormWrapper>
         </Wrapper>
        </>
     );
