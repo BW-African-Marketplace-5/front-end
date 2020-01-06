@@ -43,7 +43,7 @@ export const Logo = styled.img`
     width:200px;
 `
 export const Title = styled.h1`
-    color:white;
+    color:#e33734;
     font-weight:bold;
     font-size: 2rem;
     padding-bottom: 5%;
