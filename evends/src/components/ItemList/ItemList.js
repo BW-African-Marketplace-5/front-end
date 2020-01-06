@@ -1,6 +1,4 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
-import ItemCard from "../ItemCard/ItemCard";
 import axios from 'axios';
 
 

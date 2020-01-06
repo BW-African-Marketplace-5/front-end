@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import { Button, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Input} from 'reactstrap';
 import {Wrapper, FormWrapper, Links, TopBar, Form, FormGroupS, Logo, Title} from './Login_Register_Styles';
 import Navbar from '../Navbar/Navbar';
 import Footer from "../Footer/Footer";
 import logo from '../../imgs/evends.png'
+import axios from 'axios'
 
 const Login_Register = () => {
 
@@ -14,6 +15,22 @@ const Register = () =>{
 }
 const Login_set = () =>{
     setLogin('Login')
+}
+
+const HandleRegister = (values, tools) => {
+    axios.post('https://evendsapi.herokuapp.com/api/register', values)
+    .then(response =>{
+        console.log(response);
+    })
+    .catch(error =>{
+        alert(error.message);
+    })
+    // alert('You Registered');
+    
+}
+
+const HandleLogin = () => {
+
 }
 if (Login === 'Login'){
     return(
@@ -26,9 +43,9 @@ if (Login === 'Login'){
                 <Links to ='/' onClick={Login_set}>Login</Links>
                 <Links to ='/' onClick={Register}>Register</Links>
             </TopBar>
-            <Form>
+            <Form onSubmit={HandleLogin}>
             <Title>Login To Evends</Title>
-                <FormGroupS>
+               <FormGroupS>
                     <Input
                         id='username'
                         type='text'
@@ -61,33 +78,19 @@ if (Login === 'Login'){
         <Navbar/>
         <Wrapper>
             <FormWrapper>
-            <Logo src='/evends.png'></Logo>
+            <Logo src={logo}></Logo>
             <TopBar>
                 <Links to ='/' onClick={Login_set}>Login</Links>
                 <Links to ='/' onClick={Register}>Register</Links>
             </TopBar>
-            <Form>
+            <Form onSubmit={HandleRegister}>
             <Title>Register</Title>
                 <FormGroupS>
                     <Input
-                        id='Name'
+                        id='username'
                         type='text'
-                        name='Name'
-                        placeholder='Name'
-                    />
-                      <Input
-                        id='LastName'
-                        type='text'
-                        name='LastName'
-                        placeholder='Last Name'
-                    />
-                </FormGroupS>
-                <FormGroupS>
-                    <Input 
-                        type="email" 
-                        name="email" 
-                        id="email" 
-                        placeholder="Email" 
+                        name='username'
+                        placeholder='User Name'
                     />
                 </FormGroupS>
                 <FormGroupS>
@@ -98,19 +101,19 @@ if (Login === 'Login'){
                         placeholder="Password" 
                     />
                 </FormGroupS>
-                <FormGroupS>
+                {/* <FormGroupS>
                     <Input 
                         type="password" 
                         name="validate_password" 
                         id="validate_password" 
                         placeholder="Confirm Password" 
                     />
-                </FormGroupS>
+                </FormGroupS> */}
                 <FormGroupS>
-                    <Button>{Login}</Button>
-                </FormGroupS>
-           
+                    <Button type='submit'>{Login}</Button>
+                </FormGroupS>   
             </Form>
+            
         </FormWrapper>
     </Wrapper>
 <Footer/>

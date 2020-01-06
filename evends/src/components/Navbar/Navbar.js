@@ -1,6 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { NavItem} from 'reactstrap';
 import {Navigation, Logo, MenuLink} from './Navbar_Styles';
 import logo from '../../imgs/evends.png'
 const Navbar = () => {

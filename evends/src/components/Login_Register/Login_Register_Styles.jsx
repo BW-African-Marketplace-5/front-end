@@ -1,9 +1,8 @@
-import React from "react";
-import { Button, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {FormGroup} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Form = styled.div`
+export const Form = styled.form`
     background:#ffffffb5;
     padding: 10%;
 `
