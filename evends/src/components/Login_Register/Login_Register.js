@@ -3,6 +3,7 @@ import { Button, FormGroup, Label, Input, FormText } from 'reactstrap';
 import {Wrapper, FormWrapper, Links, TopBar, Form, FormGroupS, Logo, Title} from './Login_Register_Styles';
 import Navbar from '../Navbar/Navbar';
 import Footer from "../Footer/Footer";
+import logo from '../../imgs/evends.png'
 
 const Login_Register = () => {
 
@@ -20,7 +21,7 @@ if (Login === 'Login'){
         <Navbar/>
         <Wrapper>
             <FormWrapper>
-            <Logo src='/evends.png'></Logo>
+            <Logo src={logo}></Logo>
             <TopBar>
                 <Links to ='/' onClick={Login_set}>Login</Links>
                 <Links to ='/' onClick={Register}>Register</Links>
