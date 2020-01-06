@@ -6,7 +6,7 @@ const Navbar = () => {
     return(
   
         <Navigation>
-        <Logo src='/evends.png'></Logo> 
+          <Logo src='/evends.png'></Logo> 
         <NavItem>
           <MenuLink href="#">Home</MenuLink>
         </NavItem>
