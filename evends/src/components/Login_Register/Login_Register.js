@@ -17,7 +17,8 @@ import Footer from "../Footer/Footer";
 import logo from "../../imgs/evends.png";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
-const Login_Register = () => {
+
+const Login_Register = props => {
   const [Login, setLogin] = useState(true); //Login/Register Form State
   const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
   const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
@@ -43,17 +44,20 @@ const Login_Register = () => {
     setWarning(false);
     setForm({ username: "", password: "" });
   };
+  
   //Validate Forms
   const ValidateForm = () => {
 
   }
   //Handles Login Form Submission
-  const HandleLogin = (e, props) => {
+  const HandleLogin = (e) => {
+
     e.preventDefault();
     console.log(props);
-    const values = { //Creates User Object for API Post
+    const values = {
+      //Creates User Object for API Post
       username: formValue.username, //Assigned from formValue State
-      password: formValue.password  //Assigned from formValue State
+      password: formValue.password //Assigned from formValue State
     };
     console.log("logging in...", values);
     axiosWithAuth()
@@ -61,7 +65,6 @@ const Login_Register = () => {
       .then(response => {
         alert(response.data.message); //Alerts User of Login
         localStorage.setItem("token", response.data.token);
-        console.log(props.history);
         props.history.push("/item-list");
       })
       .catch(error => {
@@ -73,21 +76,23 @@ const Login_Register = () => {
         setForm({ username: "", password: "" }); //Clears Form
       });
   };
-  const HandleRegister = (e, props) => {
+  const HandleRegister = e => {
+    console.log(props, e);
     e.preventDefault();
-    const values = { //Creates User Object for API Post
-      username: formValue.username,  //Assigned from formValue State
-      password: formValue.password  //Assigned from formValue State
+    const values = {
+      //Creates User Object for API Post
+      username: formValue.username, //Assigned from formValue State
+      password: formValue.password //Assigned from formValue State
     };
     console.log("registering...", values);
-    axiosWithAuth() 
+    axiosWithAuth()
       .post("https://evendsapi.herokuapp.com/api/register", values) //Passes User Object to API
       .then(response => {
         console.log('successfully registered:',response);
         setLogin(true); //Sets Form State to Login
         setVisibleAlert(true); //Makes Login Alert Visible
         // alert("Please sign in."); //Prompts User To Login
-        props.history.push("/");
+        Login_set();
       })
       .catch(error => {
         console.log('There was an error:', error.message);
@@ -99,14 +104,17 @@ const Login_Register = () => {
       });
   };
 
-  const handleChanges = e => { //Change Handler for login/register forms
+  const handleChanges = e => {
+    //Change Handler for login/register forms
     // console.log("the name", e.target.name);
     // console.log("the event target", e.target);
-    setForm({ //sets formState to the value of the form
+    setForm({
+      //sets formState to the value of the form
       ...formValue,
       [e.target.name]: e.target.value
     });
   };
+
   if (Login) { //Checks Login/Register Form State
     return ( //Returns Login Form
       <>
@@ -160,7 +168,8 @@ const Login_Register = () => {
         <Footer />
       </>
     );
-  } else { //Returns Register Form
+  } else {
+    //Returns Register Form
     return (
       <>
         <Navbar />
