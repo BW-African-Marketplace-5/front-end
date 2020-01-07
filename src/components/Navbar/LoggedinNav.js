@@ -10,7 +10,7 @@ const Navbar = () => {
           <MenuLink href="/">Home</MenuLink>
         </LinkWrapper>
         <LinkWrapper>
-          <MenuLink href="/item-form">Login/Register</MenuLink>
+          <MenuLink href="/item-form">Post Product</MenuLink>
         </LinkWrapper>
         <LinkWrapper>
           <MenuLink href="/item-list">Inventory</MenuLink>

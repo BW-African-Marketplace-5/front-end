@@ -5,10 +5,12 @@ import {
   Form,
   InputWrapper,
   Title,
-  Submit
+  Submit,
+  TopBar
 } from "./Add_Item_Form_Styles";
 
 import Navbar from "../Navbar/Navbar";
+import Footer from '../Footer/Footer';
 
 const AddItemForm = () => {
   const handleChanges = () => {};
@@ -18,7 +20,9 @@ const AddItemForm = () => {
       <Navbar />
       <Wrapper>
         <FormWrapper>
-          <Title>Add Product</Title>
+          <TopBar>
+             <Title>Add Product</Title>
+          </TopBar>
           <Form>
             <div>
               <InputWrapper>
@@ -76,6 +80,7 @@ const AddItemForm = () => {
           </Form>
         </FormWrapper>
       </Wrapper>
+      <Footer/>
     </div>
   );
 };

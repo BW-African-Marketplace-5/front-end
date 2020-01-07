@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Input} from "reactstrap";
+import { Alert, Input, Spinner} from "reactstrap";
 import {
   Wrapper,
   FormWrapper,
@@ -25,6 +25,7 @@ const Login_Register = props => {
   const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
   const [visibleWarning, setWarning] = useState(false); //Alert State
   const [error, setError] = useState(''); //Error State
+
   console.log('The Form Values Are:', formValue)
   const onDismiss = () => {
       setVisibleAlert(false);
@@ -65,7 +66,7 @@ const Login_Register = props => {
   //Validate Register Form
 
   const validateRegister = (props) =>{
-    console.log('Register Validation Props:', props);
+    console.log('Register Validation Props:', props.password.length);
     if(!props.username && props.password && props.validate_password){
       setError('Username Cannot Be Blank');
       return false;
@@ -73,6 +74,13 @@ const Login_Register = props => {
     if(!props.password && !props.validate_password && props.username){
       setError('Passwords Cannot Be Blank');
       return false;
+    }
+    if(!props.password){
+      setError('Password Cannot Be Blank');
+      return false
+    }else if (props.password.length < 5){
+      setError('Password Must Be At Least 5 Characters');
+      return false
     }
     if(props.password === '' && props.username === '' && props.validate_password === ''){
       setError('Fields Cannot Be Blank')
@@ -145,6 +153,7 @@ const Login_Register = props => {
     //Change Handler for login/register forms
     // console.log("the name", e.target.name);
     // console.log("the event target", e.target);
+    onDismiss();
     setForm({
       //sets formState to the value of the form
       ...formValue,
