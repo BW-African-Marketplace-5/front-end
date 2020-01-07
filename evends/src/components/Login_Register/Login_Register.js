@@ -65,7 +65,7 @@ const Login_Register = props => {
       .then(response => {
         console.log(response);
         alert("Please sign in."); //Prompts User To Login
-        props.history.push("/");
+        Login_set();
       })
       .catch(error => {
         alert(error.message); //Alerts Error
