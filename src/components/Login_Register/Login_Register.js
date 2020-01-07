@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Alert} from "reactstrap";
+import { Alert, Input} from "reactstrap";
 import {
   Wrapper,
   FormWrapper,
@@ -18,14 +18,14 @@ import logo from "../../imgs/evends.png";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 
+
 const Login_Register = props => {
   const [Login, setLogin] = useState(true); //Login/Register Form State
   const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
   const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
   const [visibleWarning, setWarning] = useState(false); //Alert State
   const [error, setError] = useState(''); //Error State
-  const [button, setButton] = useState(true);
-  let SubmitButton;
+
   const onDismiss = () => {
       setVisibleAlert(false);
       setWarning(false);
@@ -45,23 +45,36 @@ const Login_Register = props => {
     setForm({ username: "", password: "" });
   };
   
-  //Validate Forms
-  const ValidateForm = () => {
-
+  //Validate Login Form
+  const validateLogin = (props) => {
+    console.log('Login Validation Props:', props);
+    if(!props.username && props.password){
+      setError('Username Cannot Be Blank');
+      return false;
+    }
+    if(!props.password && props.username){
+      setError('Password Cannot Be Blank');
+      return false;
+    }
+    if(props.password === '' && props.username === ''){
+      setError('Fields Cannot Be Blank');
+      return false;
+    }
+    return true;
+  }
+  //Validate Register Form
+  const validateRegister = (props) =>{
+    console.log('Login Validation Props:', props);
   }
   //Handles Login Form Submission
   const HandleLogin = (e) => {
-
-    e.preventDefault();
-    console.log(props);
-    const values = {
-      //Creates User Object for API Post
-      username: formValue.username, //Assigned from formValue State
-      password: formValue.password //Assigned from formValue State
-    };
-    console.log("logging in...", values);
-    axiosWithAuth()
-      .post("https://evendsapi.herokuapp.com/api/login", values) //Passes User Object to API
+    e.preventDefault(); //Prevents Default
+    console.log('The Error State is:', error);
+    const isValid = validateLogin(formValue);
+    console.log("logging in...", formValue);
+    if(isValid){
+      axiosWithAuth()
+      .post("https://evendsapi.herokuapp.com/api/login", formValue) //Passes form value to API
       .then(response => {
         alert(response.data.message); //Alerts User of Login
         localStorage.setItem("token", response.data.token);
@@ -70,23 +83,22 @@ const Login_Register = props => {
       .catch(error => {
         console.log('There was an error:', error.message);
         setWarning(true); //displays warning
-        setError(error.message)
+        setError('Wrong Username/Password')
       })
       .finally(() => {
         setForm({ username: "", password: "" }); //Clears Form
       });
+    }else{
+      setWarning(true); //displays warning
+    }
   };
   const HandleRegister = e => {
     console.log(props, e);
     e.preventDefault();
-    const values = {
-      //Creates User Object for API Post
-      username: formValue.username, //Assigned from formValue State
-      password: formValue.password //Assigned from formValue State
-    };
-    console.log("registering...", values);
+    const isValid = validateRegister(formValue);
+    console.log("registering...", formValue);
     axiosWithAuth()
-      .post("https://evendsapi.herokuapp.com/api/register", values) //Passes User Object to API
+      .post("https://evendsapi.herokuapp.com/api/register", formValue) //Passes form valueto API
       .then(response => {
         console.log('successfully registered:',response);
         setLogin(true); //Sets Form State to Login
