@@ -1,0 +1,89 @@
+@dark-red: #8c4843;
+@forest-green: #447746;
+@sky-blue: #8ACDEA;
+@sand-yellow: #BCBD8B;
+@burnt-sienna: #9E643C;
+@offwhite: #fefcf8;
+
+@import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap');
+
+
+
+body {
+    display: flex;
+    background-image: url("/images/sauti.png");
+    width: 100%;
+    background-size: cover;
+    justify-content: center;
+    flex-direction: column;
+}
+.nav {
+    ul {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        font-size: 1.6em;
+        font-family: 'Kulim Park', sans-serif;
+        background-color: @offwhite;
+        color: @dark-red;
+        list-style-type: none;
+        width: 58%;
+        justify-content: space-evenly;
+    }
+}
+.header {
+    background-color: @dark-red;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    h2 {
+        display: flex;
+        color: @offwhite;
+        justify-content: center;
+        font-family: 'Kulim Park', sans-serif;
+        font-size: 1.8em;
+    }
+}
+    .main {
+        display: flex;
+        width: 60%;
+        margin: 0 auto;
+        font-size: 1.6em;
+        color: @offwhite;
+        font-family: 'Kulim Park', sans-serif;
+
+        .register {
+            margin: 10%;
+            padding: 3% 10%;
+            background-color: @dark-red;
+            }
+        }
+        .signin {
+            margin: 10%;
+            padding: 3% 10%;
+            background-color: @dark-red;
+        }
+
+@media screen and (max-width: 500px) {
+    .nav {
+        width: 100%;
+    }
+    h2 {
+        display: none;
+        width: 100%;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
