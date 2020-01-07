@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input } from "reactstrap";
+import { Input, Alert} from "reactstrap";
 import {
   Wrapper,
   FormWrapper,
@@ -8,27 +8,50 @@ import {
   Form,
   InputWrapper,
   Logo,
-  Title
+  Title,
+  Submit,
+  PassRecovery
 } from "./Login_Register_Styles";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import logo from "../../imgs/evends.png";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
-const Login_Register = props => {
-  const [Login, setLogin] = useState("Login"); //Login/Register Form State
-  const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
 
+const Login_Register = props => {
+  const [Login, setLogin] = useState(true); //Login/Register Form State
+  const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
+  const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
+  const [visibleWarning, setWarning] = useState(false); //Alert State
+  const [error, setError] = useState(''); //Error State
+  const [button, setButton] = useState(true);
+  let SubmitButton;
+  const onDismiss = () => {
+      setVisibleAlert(false);
+      setWarning(false);
+  }
   //Set Login State to 'Register' : Toggles Register Form
   const Register = () => {
-    setLogin("Register");
+    setLogin(false);
+    setVisibleAlert(false);
+    setWarning(false);
+    setForm({ username: "", password: "" });
   };
   //Set Login State to 'Login' : Toggles Login Form
   const Login_set = () => {
-    setLogin("Login");
+    setLogin(true);
+    setVisibleAlert(false);
+    setWarning(false);
+    setForm({ username: "", password: "" });
   };
+  
+  //Validate Forms
+  const ValidateForm = () => {
 
-  const HandleLogin = e => {
+  }
+  //Handles Login Form Submission
+  const HandleLogin = (e) => {
+
     e.preventDefault();
     console.log(props);
     const values = {
@@ -45,7 +68,9 @@ const Login_Register = props => {
         props.history.push("/item-list");
       })
       .catch(error => {
-        alert(error.message); //Alerts Error
+        console.log('There was an error:', error.message);
+        setWarning(true); //displays warning
+        setError(error.message)
       })
       .finally(() => {
         setForm({ username: "", password: "" }); //Clears Form
@@ -63,12 +88,16 @@ const Login_Register = props => {
     axiosWithAuth()
       .post("https://evendsapi.herokuapp.com/api/register", values) //Passes User Object to API
       .then(response => {
-        console.log(response);
-        alert("Please sign in."); //Prompts User To Login
+        console.log('successfully registered:',response);
+        setLogin(true); //Sets Form State to Login
+        setVisibleAlert(true); //Makes Login Alert Visible
+        // alert("Please sign in."); //Prompts User To Login
         Login_set();
       })
       .catch(error => {
-        alert(error.message); //Alerts Error
+        console.log('There was an error:', error.message);
+        setWarning(true); //displays warning
+        setError(error.message)
       })
       .finally(() => {
         setForm({ username: "", password: "" });
@@ -85,17 +114,16 @@ const Login_Register = props => {
       [e.target.name]: e.target.value
     });
   };
-  if (Login === "Login") {
-    //Checks Login/Register Form State
-    return (
-      //Returns Login Form
+
+  if (Login) { //Checks Login/Register Form State
+    return ( //Returns Login Form
       <>
         <Navbar />
         <Wrapper>
           <FormWrapper>
             <Logo src={logo}></Logo>
-            <TopBar>
-              <Links to="/" onClick={Login_set}>
+            <TopBar className='topBar'>
+              <Links to="/" onClick={Login_set}>  
                 Login
               </Links>
               <Links to="/" onClick={Register}>
@@ -124,8 +152,15 @@ const Login_Register = props => {
                   onChange={handleChanges}
                 />
               </InputWrapper>
+              <Alert color="success" isOpen={visibleAlert} toggle={onDismiss}>
+                    Success! — Please Login!
+                </Alert>
+            <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+                {error}
+            </Alert>
+            <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery> 
               <InputWrapper>
-                <Button>{Login}</Button>
+              <Submit>Login</Submit>
               </InputWrapper>
             </Form>
           </FormWrapper>
@@ -141,7 +176,7 @@ const Login_Register = props => {
         <Wrapper>
           <FormWrapper>
             <Logo src={logo}></Logo>
-            <TopBar>
+            <TopBar className='topBar'>
               <Links to="/" onClick={Login_set}>
                 Login
               </Links>
@@ -171,16 +206,20 @@ const Login_Register = props => {
                   onChange={handleChanges}
                 />
               </InputWrapper>
-              {/* <InputWrapper>
+              <InputWrapper>
                     <Input 
                         type="password" 
                         name="validate_password" 
                         id="validate_password" 
                         placeholder="Confirm Password" 
                     />
-                </InputWrapper> */}
+                </InputWrapper>
+                 <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+                 {error}
+            </Alert>
+            <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery>  
               <InputWrapper>
-                <Button type="submit">{Login}</Button>
+                <Submit type="submit">Register</Submit>
               </InputWrapper>
             </Form>
           </FormWrapper>
