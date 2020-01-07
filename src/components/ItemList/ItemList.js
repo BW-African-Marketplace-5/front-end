@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 import ItemCard from "../ItemCard/ItemCard";
+import Navbar from '../Navbar/Navbar';
 
 const ItemList = () => {
   const [data, setData] = useState([]);
@@ -20,6 +21,7 @@ const ItemList = () => {
 
   return (
     <div>
+      <Navbar/>
       <h1>Product List</h1>
       <div>
         {data.map(item => (

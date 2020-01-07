@@ -8,13 +8,13 @@ const Navbar = () => {
         <Navigation>
           <Logo src={logo}></Logo> 
         <NavItem>
-          <MenuLink href="#">Home</MenuLink>
+          <MenuLink href="/">Home</MenuLink>
         </NavItem>
         <NavItem>
-          <MenuLink href="#">Login</MenuLink>
+          <MenuLink href="#">Add Item</MenuLink>
         </NavItem>
         <NavItem>
-          <MenuLink href="#">Register</MenuLink>
+          <MenuLink href="/item-list">Items</MenuLink>
         </NavItem>
         </Navigation>
     );
