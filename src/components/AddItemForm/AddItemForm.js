@@ -40,15 +40,10 @@ const AddItemForm = props => {
       <Navbar />
       <Wrapper>
         <FormWrapper>
-<<<<<<< HEAD
-          <Title>Add Product</Title>
-          <Form onSubmit={handleSubmit}>
-=======
           <TopBar>
              <Title>Add Product</Title>
           </TopBar>
-          <Form>
->>>>>>> e0192d846699cf42780c7b769aec1560a8c8e00c
+          <Form onSubmit={handleSubmit}>
             <div>
               <InputWrapper>
                 <label>Product:</label>
