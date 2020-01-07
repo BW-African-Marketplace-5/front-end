@@ -5,7 +5,7 @@ import {FooterContainer} from './Footer_Styles';
 const Footer = () => {
     return (
         <FooterContainer>
-           <p>Footer Content</p>
+           <p>Evends Copyright © 2019</p>
         </FooterContainer>
     );
 }

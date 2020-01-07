@@ -21,11 +21,11 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const Login_Register = props => {
   const [Login, setLogin] = useState(true); //Login/Register Form State
-  const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
+  const [formValue, setForm] = useState({ username: "", password: "", validate_password:"" }); //Form Value State
   const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
   const [visibleWarning, setWarning] = useState(false); //Alert State
   const [error, setError] = useState(''); //Error State
-
+  console.log('The Form Values Are:', formValue)
   const onDismiss = () => {
       setVisibleAlert(false);
       setWarning(false);
@@ -35,14 +35,14 @@ const Login_Register = props => {
     setLogin(false);
     setVisibleAlert(false);
     setWarning(false);
-    setForm({ username: "", password: "" });
+    setForm({ username: '', password: '', validate_password:'' });
   };
   //Set Login State to 'Login' : Toggles Login Form
   const Login_set = () => {
     setLogin(true);
     setVisibleAlert(false);
     setWarning(false);
-    setForm({ username: "", password: "" });
+    setForm({ username: '', password: '', validate_password:'' });
   };
   
   //Validate Login Form
@@ -63,8 +63,26 @@ const Login_Register = props => {
     return true;
   }
   //Validate Register Form
+
   const validateRegister = (props) =>{
-    console.log('Login Validation Props:', props);
+    console.log('Register Validation Props:', props);
+    if(!props.username && props.password && props.validate_password){
+      setError('Username Cannot Be Blank');
+      return false;
+    }
+    if(!props.password && !props.validate_password && props.username){
+      setError('Passwords Cannot Be Blank');
+      return false;
+    }
+    if(props.password === '' && props.username === '' && props.validate_password === ''){
+      setError('Fields Cannot Be Blank')
+      return false;
+    }
+    if(props.password !== props.validate_password){
+      setError('Passwords Do Not Match')
+      return false;
+    }
+    return true;
   }
   //Handles Login Form Submission
   const HandleLogin = (e) => {
@@ -97,8 +115,13 @@ const Login_Register = props => {
     e.preventDefault();
     const isValid = validateRegister(formValue);
     console.log("registering...", formValue);
-    axiosWithAuth()
-      .post("https://evendsapi.herokuapp.com/api/register", formValue) //Passes form valueto API
+    if(isValid){
+      const values = { //values to pass from state
+        username: formValue.username,
+        password: formValue.password
+      }
+      axiosWithAuth()
+      .post("https://evendsapi.herokuapp.com/api/register", values) //Passes form valueto API
       .then(response => {
         console.log('successfully registered:',response);
         setLogin(true); //Sets Form State to Login
@@ -113,6 +136,9 @@ const Login_Register = props => {
       .finally(() => {
         setForm({ username: "", password: "" });
       });
+    }else{
+      setWarning(true);
+    }
   };
 
   const handleChanges = e => {
@@ -223,6 +249,8 @@ const Login_Register = props => {
                         name="validate_password" 
                         id="validate_password" 
                         placeholder="Confirm Password" 
+                        value={formValue.checkPass}
+                        onChange={handleChanges}
                     />
                 </InputWrapper>
                  <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
