@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, Alert } from "reactstrap";
+import { Button, Input, Alert} from "reactstrap";
 import {
   Wrapper,
   FormWrapper,
@@ -8,7 +8,8 @@ import {
   Form,
   InputWrapper,
   Logo,
-  Title
+  Title,
+  Submit
 } from "./Login_Register_Styles";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
@@ -18,15 +19,33 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 const Login_Register = () => {
   const [Login, setLogin] = useState("Login"); //Login/Register Form State
   const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
-
+  const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
+  const [visibleWarning, setWarning] = useState(false); //Alert State
+  const [error, setError] = useState('');
+  const onDismiss = () => {
+      setVisibleAlert(false);
+      setWarning(false);
+  }
   //Set Login State to 'Register' : Toggles Register Form
   const Register = () => {
     setLogin("Register");
+    setVisibleAlert(false);
+    setWarning(false);
+    setForm({ username: "", password: "" });
   };
   //Set Login State to 'Login' : Toggles Login Form
   const Login_set = () => {
     setLogin("Login");
+    setVisibleAlert(false);
+    setWarning(false);
+    setForm({ username: "", password: "" });
   };
+//   const Login_Alert = () => {
+//     if (visibleAlert === false){
+//         setTimeout(() => { alert("Hello"); }, 3000);
+//     }
+//     setVisibleAlert(true);
+//   }
   //Handles Login Form Submission
   const HandleLogin = (e, props) => {
     e.preventDefault();
@@ -41,11 +60,13 @@ const Login_Register = () => {
       .then(response => {
         alert(response.data.message); //Alerts User of Login
         localStorage.setItem("token", response.data.token);
-        console.log(localStorage);
+        // console.log(localStorage);
         props.history.push("/item-list");
       })
       .catch(error => {
-        alert(error.message); //Alerts Error
+        console.log('There was an error:', error.message);
+        setWarning(true); //displays warning
+        setError(error.message)
       })
       .finally(() => {
         setForm({ username: "", password: "" }); //Clears Form
@@ -61,12 +82,16 @@ const Login_Register = () => {
     axiosWithAuth() 
       .post("https://evendsapi.herokuapp.com/api/register", values) //Passes User Object to API
       .then(response => {
-        console.log(response);
-        alert("Please sign in."); //Prompts User To Login
+        console.log('successfully registered:',response);
+        setLogin("Login"); //Sets Form State to Login
+        setVisibleAlert(true); //Makes Login Alert Visible
+        // alert("Please sign in."); //Prompts User To Login
         props.history.push("/");
       })
       .catch(error => {
-        alert(error.message); //Alerts Error
+        console.log('There was an error:', error.message);
+        setWarning(true); //displays warning
+        setError(error.message)
       })
       .finally(() => {
         setForm({ username: "", password: "" });
@@ -118,11 +143,14 @@ const Login_Register = () => {
                   onChange={handleChanges}
                 />
               </InputWrapper>
-              <Alert color="success">
-                    Registration Successful! — Please Login!
-                </Alert> 
+              <Alert color="success" isOpen={visibleAlert} toggle={onDismiss}>
+                    Success! — Please Login!
+                </Alert>
+            <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+                {error}
+            </Alert> 
               <InputWrapper>
-                <Button>{Login}</Button>
+                <Submit>{Login}</Submit>
               </InputWrapper>
             </Form>
           </FormWrapper>
@@ -175,11 +203,11 @@ const Login_Register = () => {
                         placeholder="Confirm Password" 
                     />
                 </InputWrapper> */}
-                <Alert color="info">
-                    This is a info alert — check it out!
-                </Alert>  
+                 <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+                 {error}
+            </Alert>   
               <InputWrapper>
-                <Button type="submit">{Login}</Button>
+                <Submit type="submit">{Login}</Submit>
               </InputWrapper>
             </Form>
           </FormWrapper>

@@ -1,4 +1,4 @@
-import {FormGroup} from 'reactstrap';
+import {FormGroup, Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -6,6 +6,15 @@ export const Form = styled.form`
     background:#ffffffb5;
     padding: 10%;
 `
+export const Submit = styled(Button)`
+    padding: 5%;
+    width:75%;
+    font-weight: bold;
+    border-radius:0;
+    background-color: #e33734;
+    border: solid 2px #ffffff47;
+`
+
 export const TopBar = styled.div`
     width:100%;
     display:flex;
