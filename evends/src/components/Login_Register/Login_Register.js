@@ -61,7 +61,7 @@ const Login_Register = () => {
       .then(response => {
         alert(response.data.message); //Alerts User of Login
         localStorage.setItem("token", response.data.token);
-        // console.log(localStorage);
+        console.log(props.history);
         props.history.push("/item-list");
       })
       .catch(error => {
