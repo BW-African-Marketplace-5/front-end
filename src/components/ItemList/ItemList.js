@@ -6,7 +6,6 @@ import Navbar from "../Navbar/Navbar";
 
 const ItemList = props => {
   const [data, setData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState();
 
   useEffect(() => {
     axiosWithAuth()
@@ -20,7 +19,47 @@ const ItemList = props => {
       });
   }, []);
 
-  const handleChanges = () => {};
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const results = data.filter(
+      descriptions =>
+        descriptions.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        descriptions.category
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        descriptions.market_area
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+
+  const handleChanges = event => {
+    event.preventDefault();
+    setSearchTerm(event.target.value);
+    // console.log(event.target.value);
+  };
+
+  var listRender;
+  if (searchTerm.length === 0) {
+    listRender = (
+      <div>
+        {data.map(item => (
+          <ItemCard key={item.id} data={item} />
+        ))}
+      </div>
+    );
+  } else {
+    listRender = (
+      <div>
+        {searchResults.map(item => (
+          <ItemCard key={item.id} data={item} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -38,11 +77,7 @@ const ItemList = props => {
           name="search"
         />
       </form>
-      <div>
-        {data.map(item => (
-          <ItemCard key={item.id} data={item} />
-        ))}
-      </div>
+      <section>{listRender}</section>
     </div>
   );
 };
