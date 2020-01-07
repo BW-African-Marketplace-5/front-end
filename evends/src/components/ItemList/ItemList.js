@@ -1,25 +1,33 @@
-import React from "react";
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 
+import ItemCard from "../ItemCard/ItemCard";
 
 const ItemList = () => {
+  const [data, setData] = useState([]);
 
-    const url = ''
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://evendsapi.herokuapp.com/api/products")
+      .then(res => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  }, []);
 
-    axios.get(url)
-    .then(
-        //logic here
-    )
-    .catch((error)=>{
-        console.log('The response did not receive data', error);
-    })
-
-    
-    return(
-        <div>
-            <h1>Asuh, World</h1>
-        </div>
-    );
-}
+  return (
+    <div>
+      <h1>Product List</h1>
+      <div>
+        {data.map(item => (
+          <ItemCard key={item.id} data={item} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default ItemList;

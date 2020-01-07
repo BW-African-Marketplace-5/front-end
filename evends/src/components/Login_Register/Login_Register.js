@@ -15,7 +15,7 @@ import Footer from "../Footer/Footer";
 import logo from "../../imgs/evends.png";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
-const Login_Register = () => {
+const Login_Register = props => {
   const [Login, setLogin] = useState("Login");
   const [formValue, setForm] = useState({ username: "", password: "" });
 
@@ -26,7 +26,7 @@ const Login_Register = () => {
     setLogin("Login");
   };
 
-  const HandleLogin = (e, props) => {
+  const HandleLogin = e => {
     e.preventDefault();
     console.log(props);
     const values = {
@@ -39,7 +39,6 @@ const Login_Register = () => {
       .then(response => {
         alert(response.data.message);
         localStorage.setItem("token", response.data.token);
-        console.log(localStorage);
         props.history.push("/item-list");
       })
       .catch(error => {
@@ -49,7 +48,8 @@ const Login_Register = () => {
         setForm({ username: "", password: "" });
       });
   };
-  const HandleRegister = (e, props) => {
+  const HandleRegister = e => {
+    console.log(props, e);
     e.preventDefault();
     const values = {
       username: formValue.username,
@@ -61,7 +61,7 @@ const Login_Register = () => {
       .then(response => {
         console.log(response);
         alert("Please sign in.");
-        props.history.push("/");
+        Login_set();
       })
       .catch(error => {
         alert(error.message);
