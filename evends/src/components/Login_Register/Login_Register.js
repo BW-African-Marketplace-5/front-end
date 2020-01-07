@@ -18,35 +18,35 @@ import logo from "../../imgs/evends.png";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const Login_Register = () => {
-  const [Login, setLogin] = useState("Login"); //Login/Register Form State
+  const [Login, setLogin] = useState(true); //Login/Register Form State
   const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
   const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
   const [visibleWarning, setWarning] = useState(false); //Alert State
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); //Error State
+  const [button, setButton] = useState(true);
+  let SubmitButton;
   const onDismiss = () => {
       setVisibleAlert(false);
       setWarning(false);
   }
   //Set Login State to 'Register' : Toggles Register Form
   const Register = () => {
-    setLogin("Register");
+    setLogin(false);
     setVisibleAlert(false);
     setWarning(false);
     setForm({ username: "", password: "" });
   };
   //Set Login State to 'Login' : Toggles Login Form
   const Login_set = () => {
-    setLogin("Login");
+    setLogin(true);
     setVisibleAlert(false);
     setWarning(false);
     setForm({ username: "", password: "" });
   };
-//   const Login_Alert = () => {
-//     if (visibleAlert === false){
-//         setTimeout(() => { alert("Hello"); }, 3000);
-//     }
-//     setVisibleAlert(true);
-//   }
+  //Validate Forms
+  const ValidateForm = () => {
+
+  }
   //Handles Login Form Submission
   const HandleLogin = (e, props) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ const Login_Register = () => {
       .post("https://evendsapi.herokuapp.com/api/register", values) //Passes User Object to API
       .then(response => {
         console.log('successfully registered:',response);
-        setLogin("Login"); //Sets Form State to Login
+        setLogin(true); //Sets Form State to Login
         setVisibleAlert(true); //Makes Login Alert Visible
         // alert("Please sign in."); //Prompts User To Login
         props.history.push("/");
@@ -107,14 +107,14 @@ const Login_Register = () => {
       [e.target.name]: e.target.value
     });
   };
-  if (Login === "Login") { //Checks Login/Register Form State
+  if (Login) { //Checks Login/Register Form State
     return ( //Returns Login Form
       <>
         <Navbar />
         <Wrapper>
           <FormWrapper>
             <Logo src={logo}></Logo>
-            <TopBar class='topBar'>
+            <TopBar className='topBar'>
               <Links to="/" onClick={Login_set}>  
                 Login
               </Links>
@@ -152,7 +152,7 @@ const Login_Register = () => {
             </Alert>
             <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery> 
               <InputWrapper>
-                <Submit>{Login}</Submit>
+              <Submit>Login</Submit>
               </InputWrapper>
             </Form>
           </FormWrapper>
@@ -167,7 +167,7 @@ const Login_Register = () => {
         <Wrapper>
           <FormWrapper>
             <Logo src={logo}></Logo>
-            <TopBar class='topBar'>
+            <TopBar className='topBar'>
               <Links to="/" onClick={Login_set}>
                 Login
               </Links>
@@ -210,7 +210,7 @@ const Login_Register = () => {
             </Alert>
             <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery>  
               <InputWrapper>
-                <Submit type="submit">{Login}</Submit>
+                <Submit type="submit">Register</Submit>
               </InputWrapper>
             </Form>
           </FormWrapper>
