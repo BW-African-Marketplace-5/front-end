@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import {
   Wrapper,
   FormWrapper,
@@ -10,8 +11,27 @@ import {
 
 import Navbar from "../Navbar/Navbar";
 
-const AddItemForm = () => {
-  const handleChanges = () => {};
+const initialValues = {
+  product: "",
+  category: "",
+  market_location: "",
+  description: "",
+  price: ""
+};
+
+const AddItemForm = props => {
+  const [newProduct, setNewProduct] = useState(initialValues);
+
+  const handleChanges = e => {
+    e.preventDefault();
+    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    props.history.push("/item-list");
+  };
+
+  console.log(newProduct);
 
   return (
     <div>
@@ -19,7 +39,7 @@ const AddItemForm = () => {
       <Wrapper>
         <FormWrapper>
           <Title>Add Product</Title>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <div>
               <InputWrapper>
                 <label>Product:</label>
@@ -27,7 +47,7 @@ const AddItemForm = () => {
                   type="text"
                   name="product"
                   placeholder="Beans"
-                  value={null}
+                  value={newProduct.product}
                   onChange={handleChanges}
                 />
               </InputWrapper>
@@ -37,7 +57,7 @@ const AddItemForm = () => {
                   type="text"
                   name="category"
                   placeholder="Vegetables"
-                  value={null}
+                  value={newProduct.category}
                   onChange={handleChanges}
                 />
               </InputWrapper>
@@ -47,7 +67,7 @@ const AddItemForm = () => {
                   type="text"
                   name="market_location"
                   placeholder="Rwanda"
-                  value={null}
+                  value={newProduct.market_location}
                   onChange={handleChanges}
                 />
               </InputWrapper>
@@ -57,7 +77,7 @@ const AddItemForm = () => {
                   type="text"
                   name="description"
                   placeholder="5 pounds/Kidney"
-                  value={null}
+                  value={newProduct.description}
                   onChange={handleChanges}
                 />
               </InputWrapper>
@@ -67,7 +87,7 @@ const AddItemForm = () => {
                   type="text"
                   name="price"
                   placeholder="300.00 RWF"
-                  value={null}
+                  value={newProduct.price}
                   onChange={handleChanges}
                 />
               </InputWrapper>
@@ -80,4 +100,10 @@ const AddItemForm = () => {
   );
 };
 
-export default AddItemForm;
+export default connect(state => {
+  return {
+    productData: state.productData,
+    error: state.error,
+    isFetching: state.isFetching
+  };
+}, {})(AddItemForm);
