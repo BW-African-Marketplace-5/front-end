@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input } from "reactstrap";
+import { Button, Input, Alert } from "reactstrap";
 import {
   Wrapper,
   FormWrapper,
@@ -118,6 +118,9 @@ const Login_Register = () => {
                   onChange={handleChanges}
                 />
               </InputWrapper>
+              <Alert color="success">
+                    Registration Successful! — Please Login!
+                </Alert> 
               <InputWrapper>
                 <Button>{Login}</Button>
               </InputWrapper>
@@ -172,6 +175,9 @@ const Login_Register = () => {
                         placeholder="Confirm Password" 
                     />
                 </InputWrapper> */}
+                <Alert color="info">
+                    This is a info alert — check it out!
+                </Alert>  
               <InputWrapper>
                 <Button type="submit">{Login}</Button>
               </InputWrapper>
