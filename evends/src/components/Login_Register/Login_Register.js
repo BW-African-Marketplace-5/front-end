@@ -92,7 +92,6 @@ const Login_Register = props => {
         setLogin(true); //Sets Form State to Login
         setVisibleAlert(true); //Makes Login Alert Visible
         // alert("Please sign in."); //Prompts User To Login
-        Login_set();
       })
       .catch(error => {
         console.log('There was an error:', error.message);
