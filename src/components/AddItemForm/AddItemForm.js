@@ -6,10 +6,12 @@ import {
   Form,
   InputWrapper,
   Title,
-  Submit
+  Submit,
+  TopBar
 } from "./Add_Item_Form_Styles";
 
 import Navbar from "../Navbar/Navbar";
+import Footer from '../Footer/Footer';
 
 const initialValues = {
   product: "",
@@ -38,8 +40,15 @@ const AddItemForm = props => {
       <Navbar />
       <Wrapper>
         <FormWrapper>
+<<<<<<< HEAD
           <Title>Add Product</Title>
           <Form onSubmit={handleSubmit}>
+=======
+          <TopBar>
+             <Title>Add Product</Title>
+          </TopBar>
+          <Form>
+>>>>>>> e0192d846699cf42780c7b769aec1560a8c8e00c
             <div>
               <InputWrapper>
                 <label>Product:</label>
@@ -96,6 +105,7 @@ const AddItemForm = props => {
           </Form>
         </FormWrapper>
       </Wrapper>
+      <Footer/>
     </div>
   );
 };

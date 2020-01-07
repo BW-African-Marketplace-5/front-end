@@ -1,4 +1,4 @@
-import {Nav, NavLink} from 'reactstrap';
+import {Nav, NavLink, NavItem} from 'reactstrap';
 import styled from 'styled-components';
 
 export const Navigation = styled(Nav)`
@@ -13,6 +13,11 @@ export const Logo = styled.img`
 export const NavWrapper = styled.div`
     display:flex;
     justify-content:start;
+`
+export const LinkWrapper = styled(NavItem)`
+    display:flex;
+    justify-content:center;
+    align-items:center;
 `
 export const MenuLink = styled(NavLink)`
     color:#dc3545;

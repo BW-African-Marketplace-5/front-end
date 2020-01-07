@@ -35,8 +35,23 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 export const Title = styled.h1`
-  color: #e33734;
+  color: white;
   font-weight: bold;
   font-size: 2rem;
-  padding-bottom: 5%;
+  padding: 5%;
+`;
+export const TopBar = styled.div`
+    width:100%;
+    display:flex;
+    justify-content: space-evenly;
+    background-color: #e33734;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    :hover{
+        border-color:#ffffff47;
+        .topBar{
+            border-color:#ffffff47;
+        }
+
 `;
