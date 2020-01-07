@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, Alert} from "reactstrap";
+import { Input, Alert} from "reactstrap";
 import {
   Wrapper,
   FormWrapper,
@@ -9,7 +9,8 @@ import {
   InputWrapper,
   Logo,
   Title,
-  Submit
+  Submit,
+  PassRecovery
 } from "./Login_Register_Styles";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
@@ -113,7 +114,7 @@ const Login_Register = () => {
         <Wrapper>
           <FormWrapper>
             <Logo src={logo}></Logo>
-            <TopBar>
+            <TopBar class='topBar'>
               <Links to="/" onClick={Login_set}>  
                 Login
               </Links>
@@ -148,7 +149,8 @@ const Login_Register = () => {
                 </Alert>
             <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
                 {error}
-            </Alert> 
+            </Alert>
+            <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery> 
               <InputWrapper>
                 <Submit>{Login}</Submit>
               </InputWrapper>
@@ -165,7 +167,7 @@ const Login_Register = () => {
         <Wrapper>
           <FormWrapper>
             <Logo src={logo}></Logo>
-            <TopBar>
+            <TopBar class='topBar'>
               <Links to="/" onClick={Login_set}>
                 Login
               </Links>
@@ -195,17 +197,18 @@ const Login_Register = () => {
                   onChange={handleChanges}
                 />
               </InputWrapper>
-              {/* <InputWrapper>
+              <InputWrapper>
                     <Input 
                         type="password" 
                         name="validate_password" 
                         id="validate_password" 
                         placeholder="Confirm Password" 
                     />
-                </InputWrapper> */}
+                </InputWrapper>
                  <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
                  {error}
-            </Alert>   
+            </Alert>
+            <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery>  
               <InputWrapper>
                 <Submit type="submit">{Login}</Submit>
               </InputWrapper>
