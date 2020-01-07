@@ -130,7 +130,7 @@ const Login_Register = props => {
               </Links>
             </TopBar>
             <Form onSubmit={HandleLogin}>
-              <Title>Login</Title>
+              <Title>Login Please</Title>
               <InputWrapper>
                 <Input
                   id="username"
