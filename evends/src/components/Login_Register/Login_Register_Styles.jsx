@@ -26,7 +26,7 @@ export const FormWrapper = styled.div`
     padding: 5% 0;
 
 `
-export const FormGroupS = styled(FormGroup)`
+export const InputWrapper = styled(FormGroup)`
     display:flex;
     justify-content:center;
     align-items:center;

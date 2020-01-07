@@ -6,7 +6,7 @@ import {
   Links,
   TopBar,
   Form,
-  FormGroupS,
+  InputWrapper,
   Logo,
   Title
 } from "./Login_Register_Styles";
@@ -16,12 +16,14 @@ import logo from "../../imgs/evends.png";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const Login_Register = props => {
-  const [Login, setLogin] = useState("Login");
-  const [formValue, setForm] = useState({ username: "", password: "" });
+  const [Login, setLogin] = useState("Login"); //Login/Register Form State
+  const [formValue, setForm] = useState({ username: "", password: "" }); //Form Value State
 
+  //Set Login State to 'Register' : Toggles Register Form
   const Register = () => {
     setLogin("Register");
   };
+  //Set Login State to 'Login' : Toggles Login Form
   const Login_set = () => {
     setLogin("Login");
   };
@@ -30,41 +32,43 @@ const Login_Register = props => {
     e.preventDefault();
     console.log(props);
     const values = {
-      username: formValue.username,
-      password: formValue.password
+      //Creates User Object for API Post
+      username: formValue.username, //Assigned from formValue State
+      password: formValue.password //Assigned from formValue State
     };
     console.log("logging in...", values);
     axiosWithAuth()
-      .post("https://evendsapi.herokuapp.com/api/login", values)
+      .post("https://evendsapi.herokuapp.com/api/login", values) //Passes User Object to API
       .then(response => {
-        alert(response.data.message);
+        alert(response.data.message); //Alerts User of Login
         localStorage.setItem("token", response.data.token);
         props.history.push("/item-list");
       })
       .catch(error => {
-        alert(error.message);
+        alert(error.message); //Alerts Error
       })
       .finally(() => {
-        setForm({ username: "", password: "" });
+        setForm({ username: "", password: "" }); //Clears Form
       });
   };
   const HandleRegister = e => {
     console.log(props, e);
     e.preventDefault();
     const values = {
-      username: formValue.username,
-      password: formValue.password
+      //Creates User Object for API Post
+      username: formValue.username, //Assigned from formValue State
+      password: formValue.password //Assigned from formValue State
     };
     console.log("registering...", values);
     axiosWithAuth()
-      .post("https://evendsapi.herokuapp.com/api/register", values)
+      .post("https://evendsapi.herokuapp.com/api/register", values) //Passes User Object to API
       .then(response => {
         console.log(response);
-        alert("Please sign in.");
-        Login_set();
+        alert("Please sign in."); //Prompts User To Login
+        props.history.push("/");
       })
       .catch(error => {
-        alert(error.message);
+        alert(error.message); //Alerts Error
       })
       .finally(() => {
         setForm({ username: "", password: "" });
@@ -72,15 +76,19 @@ const Login_Register = props => {
   };
 
   const handleChanges = e => {
+    //Change Handler for login/register forms
     // console.log("the name", e.target.name);
     // console.log("the event target", e.target);
     setForm({
+      //sets formState to the value of the form
       ...formValue,
       [e.target.name]: e.target.value
     });
   };
   if (Login === "Login") {
+    //Checks Login/Register Form State
     return (
+      //Returns Login Form
       <>
         <Navbar />
         <Wrapper>
@@ -96,7 +104,7 @@ const Login_Register = props => {
             </TopBar>
             <Form onSubmit={HandleLogin}>
               <Title>Login</Title>
-              <FormGroupS>
+              <InputWrapper>
                 <Input
                   id="username"
                   type="text"
@@ -105,8 +113,8 @@ const Login_Register = props => {
                   value={formValue.username}
                   onChange={handleChanges}
                 />
-              </FormGroupS>
-              <FormGroupS>
+              </InputWrapper>
+              <InputWrapper>
                 <Input
                   type="password"
                   name="password"
@@ -115,10 +123,10 @@ const Login_Register = props => {
                   value={formValue.password}
                   onChange={handleChanges}
                 />
-              </FormGroupS>
-              <FormGroupS>
+              </InputWrapper>
+              <InputWrapper>
                 <Button>{Login}</Button>
-              </FormGroupS>
+              </InputWrapper>
             </Form>
           </FormWrapper>
         </Wrapper>
@@ -126,6 +134,7 @@ const Login_Register = props => {
       </>
     );
   } else {
+    //Returns Register Form
     return (
       <>
         <Navbar />
@@ -142,7 +151,7 @@ const Login_Register = props => {
             </TopBar>
             <Form method="post" onSubmit={HandleRegister}>
               <Title>Register</Title>
-              <FormGroupS>
+              <InputWrapper>
                 <Input
                   id="username"
                   type="text"
@@ -151,8 +160,8 @@ const Login_Register = props => {
                   value={formValue.username}
                   onChange={handleChanges}
                 />
-              </FormGroupS>
-              <FormGroupS>
+              </InputWrapper>
+              <InputWrapper>
                 <Input
                   type="password"
                   name="password"
@@ -161,18 +170,18 @@ const Login_Register = props => {
                   value={formValue.password}
                   onChange={handleChanges}
                 />
-              </FormGroupS>
-              {/* <FormGroupS>
+              </InputWrapper>
+              {/* <InputWrapper>
                     <Input 
                         type="password" 
                         name="validate_password" 
                         id="validate_password" 
                         placeholder="Confirm Password" 
                     />
-                </FormGroupS> */}
-              <FormGroupS>
+                </InputWrapper> */}
+              <InputWrapper>
                 <Button type="submit">{Login}</Button>
-              </FormGroupS>
+              </InputWrapper>
             </Form>
           </FormWrapper>
         </Wrapper>
