@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
 import Carousel from '../Carousel/Carousel';
+import Footer from '../Footer/Footer';
 import {
   Wrapper, 
   ItemWrapper, 
@@ -93,6 +94,7 @@ const ItemList = props => {
         Add Product
       </button>
       <section>{listRender}</section>
+      <Footer/>
     </Wrapper>
     </>
   );

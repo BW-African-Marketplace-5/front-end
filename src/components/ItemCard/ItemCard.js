@@ -1,19 +1,23 @@
 import React, {useState, useEffect} from "react";
-import {ItemWrapper, ProductCard} from './ItemCard_Styles';
+import {
+  ItemWrapper, 
+  ProductCard, 
+  Title,
+  SubTitle,
+  Price
+} from './ItemCard_Styles';
 import {
    CardText, 
-   CardBody,
-   CardTitle, 
-   CardSubtitle, 
+   CardBody,  
    Button
 } from 'reactstrap';
 import {
    GiGrain,
    GiMeat,
    GiFruitBowl,
-   GiFruiting,
-
+   GiFruiting
 } from "react-icons/gi";
+import {FaDollarSign} from 'react-icons/fa'
 const ItemCard = props => {
   const [iconState, setIcon] = useState();
   console.log('The Category Is:', props.data.category)
@@ -38,14 +42,14 @@ const ItemCard = props => {
 
   return (
     <ProductCard>
+      <Title>{props.data.name}</Title>
       <CardBody>            
-        <CardTitle>{props.data.name}</CardTitle>
-        <CardSubtitle>Category: {iconState} {props.data.category}</CardSubtitle>
-        <CardSubtitle>Market Area: {props.data.market_area}</CardSubtitle>
-        <CardSubtitle>Description: {props.data.description}</CardSubtitle>
-        <CardSubtitle>Price: {props.data.price}</CardSubtitle>
+        <SubTitle>Category: {iconState} {props.data.category}</SubTitle>
+        <SubTitle>Market Area: {props.data.market_area}</SubTitle>
+        <SubTitle>Description: {props.data.description}</SubTitle>
         <CardText></CardText>
       </CardBody>
+      <Price>Price: <FaDollarSign/> {props.data.price}</Price>
     </ProductCard>
   );
 };
