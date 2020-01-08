@@ -8,7 +8,7 @@ export const Navigation = styled(Nav)`
     justify-content:center;
 `
 export const Logo = styled.img`
-    width:100px;
+    width:125px;
 `
 export const NavWrapper = styled.div`
     display:flex;

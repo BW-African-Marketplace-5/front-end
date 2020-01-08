@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 import ItemCard from "../ItemCard/ItemCard";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Navbar/LoggedinNav";
 
 const ItemList = props => {
   const [data, setData] = useState([]);

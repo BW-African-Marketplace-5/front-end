@@ -9,10 +9,10 @@ const Navbar = () => {
         <MenuLink href="/">Home</MenuLink>
       </LinkWrapper>
       <LinkWrapper>
-        <MenuLink href="/item-form">Add Items</MenuLink>
+        <MenuLink href="/">About</MenuLink>
       </LinkWrapper>
       <LinkWrapper>
-        <MenuLink href="/item-list">Inventory</MenuLink>
+        <MenuLink href="/">Our Mission</MenuLink>
       </LinkWrapper>
     </Navigation>
   );
