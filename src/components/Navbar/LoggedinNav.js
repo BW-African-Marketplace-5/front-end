@@ -22,7 +22,7 @@ const Navbar = () => {
           <MenuLink href="/item-list">Inventory</MenuLink>
         </LinkWrapper>
         <LinkWrapper>
-          <MenuLink onClick={() => localStorage.clear("token")} href="/">
+          <MenuLink onClick={() => window.localStorage.clear("token")} href="/">
             Log Out
           </MenuLink>
         </LinkWrapper>
