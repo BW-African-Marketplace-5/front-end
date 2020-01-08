@@ -25,6 +25,7 @@ const Login_Register = props => {
   const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
   const [visibleWarning, setWarning] = useState(false); //Alert State
   const [error, setError] = useState(''); //Error State
+  const [spinner, setSpin] = useState(false); //Spinner
 
   console.log('The Form Values Are:', formValue)
   const onDismiss = () => {
@@ -96,9 +97,10 @@ const Login_Register = props => {
   const HandleLogin = (e) => {
     e.preventDefault(); //Prevents Default
     console.log('The Error State is:', error);
-    const isValid = validateLogin(formValue);
+    const isValid = validateLogin(formValue); //return true or false 
     console.log("logging in...", formValue);
     if(isValid){
+      setSpin(true);
       axiosWithAuth()
       .post("https://evendsapi.herokuapp.com/api/login", formValue) //Passes form value to API
       .then(response => {
@@ -208,6 +210,7 @@ const Login_Register = props => {
               <InputWrapper>
               <Submit>Login</Submit>
               </InputWrapper>
+              { spinner ? (<Spinner size="sm" color="secondary" />) : (<br></br>)}
             </Form>
           </FormWrapper>
         </Wrapper>

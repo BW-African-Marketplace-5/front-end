@@ -3,7 +3,7 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 import { connect } from "react-redux";
 
 import ItemCard from "../ItemCard/ItemCard";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Navbar/LoggedinNav";
 import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
