@@ -1,20 +1,19 @@
 import React from "react";
-import { NavItem } from "reactstrap";
-import { Navigation, Logo, MenuLink } from "./Navbar_Styles";
+import { Navigation, Logo, MenuLink, LinkWrapper } from "./Navbar_Styles";
 import logo from "../../imgs/evends.png";
 const Navbar = () => {
   return (
     <Navigation>
       <Logo src={logo}></Logo>
-      <NavItem>
+      <LinkWrapper>
         <MenuLink href="/">Home</MenuLink>
-      </NavItem>
-      <NavItem>
-        <MenuLink href="/item-form">Add Item</MenuLink>
-      </NavItem>
-      <NavItem>
-        <MenuLink href="/item-list">Items</MenuLink>
-      </NavItem>
+      </LinkWrapper>
+      <LinkWrapper>
+        <MenuLink href="/item-form">Add Items</MenuLink>
+      </LinkWrapper>
+      <LinkWrapper>
+        <MenuLink href="/item-list">Inventory</MenuLink>
+      </LinkWrapper>
     </Navigation>
   );
 };
