@@ -8,7 +8,13 @@ import { Input } from "reactstrap";
 import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
-  console.log("The props are:", props.productData, props);
+  let products = props.productData;
+  console.log(
+    "The props are:",
+    products.forEach(item => {
+      console.log(item.category);
+    })
+  );
 
   useEffect(() => {
     props.fetchProducts();
@@ -42,7 +48,7 @@ const ItemList = props => {
     listRender = (
       <ItemWrapper>
         {props.productData.map(item => (
-          <ItemCard key={item.id} data={item} />
+          <ItemCard key={item.id} data={item} allData={props.productData} />
         ))}
       </ItemWrapper>
     );
@@ -50,7 +56,7 @@ const ItemList = props => {
     listRender = (
       <ItemWrapper>
         {searchResults.map(item => (
-          <ItemCard key={item.id} data={item} />
+          <ItemCard key={item.id} data={item} allData={props.productData} />
         ))}
       </ItemWrapper>
     );
@@ -60,8 +66,8 @@ const ItemList = props => {
     <>
       <Navbar />
       <Wrapper>
-        <Title>Product List</Title>
         <Carousel />
+        <Title>Product List</Title>
         <form>
           <Input
             onChange={handleChanges}
