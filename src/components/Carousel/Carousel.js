@@ -18,7 +18,7 @@ const items = [
     caption: 'Slide 2'
   },
   {
-    src: 'https://images.pexels.com/photos/2883380/pexels-photo-2883380.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    src: 'https://images.pexels.com/photos/2883380/pexels-photo-2883380.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260',
     altText: 'Slide 3',
     caption: 'Slide 3'
   }

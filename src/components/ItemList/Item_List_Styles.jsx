@@ -11,7 +11,7 @@ export const ItemWrapper = styled.div`
     justify-content: center;
     flex-wrap:wrap;
     align-items:center;
-    width:100%;
+    width:100vw;
 `
 export const Title = styled.h1`
     color:white;
