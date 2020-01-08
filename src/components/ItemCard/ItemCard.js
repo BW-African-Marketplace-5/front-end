@@ -1,14 +1,21 @@
 import React from "react";
-
+import {ItemWrapper, ProductCard} from './ItemCard_Styles';
+import {
+   CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 const ItemCard = props => {
   return (
-    <div>
-      <h3>{props.data.name}</h3>
-      <p>Category: {props.data.category}</p>
-      <p>Market Area: {props.data.market_area}</p>
-      <p>Description: {props.data.description}</p>
-      <p>Price: {props.data.price}</p>
-    </div>
+    <ProductCard>
+      <CardBody>            
+        <CardTitle>{props.data.name}</CardTitle>
+        <CardSubtitle>Category: {props.data.category}</CardSubtitle>
+        <CardSubtitle>Market Area: {props.data.market_area}</CardSubtitle>
+        <CardSubtitle>Description: {props.data.description}</CardSubtitle>
+        <CardSubtitle>Price: {props.data.price}</CardSubtitle>
+        <CardText></CardText>
+      </CardBody>
+    </ProductCard>
   );
 };
 

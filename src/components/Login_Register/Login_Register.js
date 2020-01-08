@@ -111,7 +111,9 @@ const Login_Register = props => {
       .catch(error => {
         console.log('There was an error:', error.message);
         setWarning(true); //displays warning
+        setSpin(false); //turns off loader
         setError('Wrong Username/Password')
+        
       })
       .finally(() => {
         setForm({ username: "", password: "" }); //Clears Form

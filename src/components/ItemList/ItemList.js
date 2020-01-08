@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import { connect } from "react-redux";
-
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
+import Carousel from '../Carousel/Carousel';
+import {
+  Wrapper, 
+  ItemWrapper, 
+  Title
+} from './Item_List_Styles';
+import {Input} from 'reactstrap';
 import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
-  console.log(props.productData);
+  console.log('The props are:', props.productData);
 
   useEffect(() => {
     // axiosWithAuth()
@@ -38,7 +44,7 @@ const ItemList = props => {
           .includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
-  }, [searchTerm]);
+  },[searchTerm]);
 
   const handleChanges = event => {
     event.preventDefault();
@@ -49,31 +55,30 @@ const ItemList = props => {
   var listRender;
   if (searchTerm.length === 0) {
     listRender = (
-      <div>
+      <ItemWrapper>
         {props.productData.map(item => (
           <ItemCard key={item.id} data={item} />
         ))}
-      </div>
+      </ItemWrapper>
     );
   } else {
     listRender = (
-      <div>
+      <ItemWrapper>
         {searchResults.map(item => (
           <ItemCard key={item.id} data={item} />
         ))}
-      </div>
+      </ItemWrapper>
     );
   }
 
   return (
-    <div>
+    <>
       <Navbar />
-      <h1>Product List</h1>
-      <button onClick={() => props.history.push("/item-form")}>
-        Add Product
-      </button>
+      <Wrapper>
+      <Title>Product List</Title>
+      <Carousel/>
       <form>
-        <input
+        <Input
           onChange={handleChanges}
           value={searchTerm}
           type="search"
@@ -81,8 +86,12 @@ const ItemList = props => {
           name="search"
         />
       </form>
+      <button onClick={() => props.history.push("/item-form")}>
+        Add Product
+      </button>
       <section>{listRender}</section>
-    </div>
+    </Wrapper>
+    </>
   );
 };
 

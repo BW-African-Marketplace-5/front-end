@@ -16,6 +16,9 @@ const Navbar = () => {
         <LinkWrapper>
           <MenuLink href="/item-list">Inventory</MenuLink>
         </LinkWrapper>
+        <LinkWrapper>
+          <MenuLink href="/">Log Out</MenuLink>
+        </LinkWrapper>
         </NavWrapper>
         </Navigation>
     );
