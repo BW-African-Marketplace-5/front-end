@@ -1,31 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
 import { connect } from "react-redux";
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
-import Carousel from '../Carousel/Carousel';
-import {
-  Wrapper, 
-  ItemWrapper, 
-  Title
-} from './Item_List_Styles';
-import {Input} from 'reactstrap';
+import Carousel from "../Carousel/Carousel";
+import { Wrapper, ItemWrapper, Title } from "./Item_List_Styles";
+import { Input } from "reactstrap";
 import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
-  console.log('The props are:', props.productData);
+  console.log("The props are:", props.productData, props);
 
   useEffect(() => {
-    // axiosWithAuth()
-    //   .get("https://evendsapi.herokuapp.com/api/products")
-    //   .then(res => {
-    //     console.log(res.data);
-    //     setData(res.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message);
-    //   });
-
     props.fetchProducts();
   }, []);
 
@@ -44,7 +29,7 @@ const ItemList = props => {
           .includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
-  },[searchTerm]);
+  }, [searchTerm, props.productData]);
 
   const handleChanges = event => {
     event.preventDefault();
@@ -75,22 +60,22 @@ const ItemList = props => {
     <>
       <Navbar />
       <Wrapper>
-      <Title>Product List</Title>
-      <Carousel/>
-      <form>
-        <Input
-          onChange={handleChanges}
-          value={searchTerm}
-          type="search"
-          placeholder="Search Products"
-          name="search"
-        />
-      </form>
-      <button onClick={() => props.history.push("/item-form")}>
-        Add Product
-      </button>
-      <section>{listRender}</section>
-    </Wrapper>
+        <Title>Product List</Title>
+        <Carousel />
+        <form>
+          <Input
+            onChange={handleChanges}
+            value={searchTerm}
+            type="search"
+            placeholder="Search Products"
+            name="search"
+          />
+        </form>
+        <button onClick={() => props.history.push("/item-form")}>
+          Add Product
+        </button>
+        <section>{listRender}</section>
+      </Wrapper>
     </>
   );
 };
