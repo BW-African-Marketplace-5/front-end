@@ -84,16 +84,6 @@ const AddItemForm = props => {
                 />
               </InputWrapper>
               <InputWrapper>
-                <label>Market Location: </label>
-                <input
-                  type="text"
-                  name="market_area"
-                  placeholder="Rwanda"
-                  value={newProduct.market_location}
-                  onChange={handleChanges}
-                />
-              </InputWrapper>
-              <InputWrapper>
                 <label>Description: </label>
                 <input
                   type="text"
@@ -112,6 +102,20 @@ const AddItemForm = props => {
                   value={newProduct.price}
                   onChange={handleChanges}
                 />
+              </InputWrapper>
+              <InputWrapper>
+                <label>Market Location: </label>
+                <select
+                  name="market_area"
+                  placeholder="Rwanda"
+                  value={newProduct.market_area}
+                  onChange={handleChanges}
+                >
+                  <option>Rwanda</option>
+                  <option>Kenya</option>
+                  <option>Uganda</option>
+                  <option>Ethiopia</option>
+                </select>
               </InputWrapper>
               <Submit>Submit</Submit>
             </div>

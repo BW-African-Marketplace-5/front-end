@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
 import { connect } from "react-redux";
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
@@ -15,21 +14,14 @@ import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
   let products = props.productData;
-  console.log('The props are:', products.forEach(item =>{
-    console.log(item.category)
-  }));
+  console.log(
+    "The props are:",
+    products.forEach(item => {
+      console.log(item.category);
+    })
+  );
 
   useEffect(() => {
-    // axiosWithAuth()
-    //   .get("https://evendsapi.herokuapp.com/api/products")
-    //   .then(res => {
-    //     console.log(res.data);
-    //     setData(res.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message);
-    //   });
-
     props.fetchProducts();
   }, []);
 
@@ -48,7 +40,7 @@ const ItemList = props => {
           .includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
-  },[searchTerm]);
+  }, [searchTerm, props.productData]);
 
   const handleChanges = event => {
     event.preventDefault();
@@ -79,23 +71,23 @@ const ItemList = props => {
     <>
       <Navbar />
       <Wrapper>
-      <Carousel/>
-      <Title>Product List</Title>
-      <form>
-        <Input
-          onChange={handleChanges}
-          value={searchTerm}
-          type="search"
-          placeholder="Search Products"
-          name="search"
-        />
-      </form>
-      <button onClick={() => props.history.push("/item-form")}>
-        Add Product
-      </button>
-      <section>{listRender}</section>
-      <Footer/>
-    </Wrapper>
+        <Carousel />
+        <Title>Product List</Title>
+        <form>
+          <Input
+            onChange={handleChanges}
+            value={searchTerm}
+            type="search"
+            placeholder="Search Products"
+            name="search"
+          />
+        </form>
+        <button onClick={() => props.history.push("/item-form")}>
+          Add Product
+        </button>
+        <section>{listRender}</section>
+        <Footer/>
+      </Wrapper>
     </>
   );
 };
