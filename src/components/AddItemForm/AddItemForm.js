@@ -10,7 +10,7 @@ import {
   TopBar
 } from "./Add_Item_Form_Styles";
 
-import Navbar from "../Navbar/Navbar";
+import LoggedinNav from "../Navbar/LoggedinNav";
 import Footer from "../Footer/Footer";
 import { createProduct } from "../../actions/actions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
@@ -55,7 +55,7 @@ const AddItemForm = props => {
 
   return (
     <div>
-      <Navbar />
+      <LoggedinNav />
       <Wrapper>
         <FormWrapper>
           <TopBar>
