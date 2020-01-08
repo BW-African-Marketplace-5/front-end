@@ -1,7 +1,10 @@
 import {
   FETCH_PRODUCTS_LOADING,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE
+  FETCH_PRODUCTS_FAILURE,
+  CREATE_PRODUCT_START,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_FAILURE
 } from "../actions/actions";
 
 const initialState = {
@@ -29,6 +32,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         productData: [],
         isFetching: false,
+        error: action.payload
+      };
+    case CREATE_PRODUCT_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: null
+      };
+    case CREATE_PRODUCT_SUCCESS:
+      return {
+        productData: [...state, action.payload],
+        error: null
+      };
+    case CREATE_PRODUCT_FAILURE:
+      return {
+        ...state,
+        productData: [],
         error: action.payload
       };
     default:

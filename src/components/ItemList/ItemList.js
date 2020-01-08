@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import { connect } from "react-redux";
 
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/Navbar";
+import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
-  const [data, setData] = useState([]);
+  console.log(props.productData);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get("https://evendsapi.herokuapp.com/api/products")
-      .then(res => {
-        console.log(res.data);
-        setData(res.data);
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+    // axiosWithAuth()
+    //   .get("https://evendsapi.herokuapp.com/api/products")
+    //   .then(res => {
+    //     console.log(res.data);
+    //     setData(res.data);
+    //   })
+    //   .catch(error => {
+    //     console.log(error.message);
+    //   });
+
+    props.fetchProducts();
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const results = data.filter(
+    const results = props.productData.filter(
       descriptions =>
         descriptions.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         descriptions.category
@@ -46,7 +50,7 @@ const ItemList = props => {
   if (searchTerm.length === 0) {
     listRender = (
       <div>
-        {data.map(item => (
+        {props.productData.map(item => (
           <ItemCard key={item.id} data={item} />
         ))}
       </div>
@@ -82,4 +86,13 @@ const ItemList = props => {
   );
 };
 
-export default ItemList;
+export default connect(
+  state => {
+    return {
+      productData: state.productData,
+      isFetching: state.isFetching,
+      error: state.error
+    };
+  },
+  { fetchProducts }
+)(ItemList);

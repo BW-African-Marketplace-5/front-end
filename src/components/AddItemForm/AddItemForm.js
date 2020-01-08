@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   Wrapper,
@@ -11,18 +11,34 @@ import {
 } from "./Add_Item_Form_Styles";
 
 import Navbar from "../Navbar/Navbar";
-import Footer from '../Footer/Footer';
+import Footer from "../Footer/Footer";
+import { createProduct } from "../../actions/actions";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const initialValues = {
-  product: "",
   category: "",
-  market_location: "",
+  market_area: "",
+  name: "",
   description: "",
   price: ""
 };
 
 const AddItemForm = props => {
   const [newProduct, setNewProduct] = useState(initialValues);
+  const [currentUser, setCurrentUser] = useState({
+    currentUserId: null,
+    currentUsername: ""
+  });
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://evendsapi.herokuapp.com/api/users/current")
+      .then(res => {
+        console.log(res.data);
+        setCurrentUser(res.data);
+      })
+      .catch(err => console.log(err.messsage));
+  }, []);
 
   const handleChanges = e => {
     e.preventDefault();
@@ -31,9 +47,11 @@ const AddItemForm = props => {
 
   const handleSubmit = () => {
     props.history.push("/item-list");
+    props.createProduct(newProduct, currentUser.currentUserId);
   };
 
   console.log(newProduct);
+  console.log(currentUser.currentUserId);
 
   return (
     <div>
@@ -41,7 +59,7 @@ const AddItemForm = props => {
       <Wrapper>
         <FormWrapper>
           <TopBar>
-             <Title>Add Product</Title>
+            <Title>Add Product</Title>
           </TopBar>
           <Form onSubmit={handleSubmit}>
             <div>
@@ -49,7 +67,7 @@ const AddItemForm = props => {
                 <label>Product:</label>
                 <input
                   type="text"
-                  name="product"
+                  name="name"
                   placeholder="Beans"
                   value={newProduct.product}
                   onChange={handleChanges}
@@ -69,7 +87,7 @@ const AddItemForm = props => {
                 <label>Market Location: </label>
                 <input
                   type="text"
-                  name="market_location"
+                  name="market_area"
                   placeholder="Rwanda"
                   value={newProduct.market_location}
                   onChange={handleChanges}
@@ -100,15 +118,18 @@ const AddItemForm = props => {
           </Form>
         </FormWrapper>
       </Wrapper>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
 
-export default connect(state => {
-  return {
-    productData: state.productData,
-    error: state.error,
-    isFetching: state.isFetching
-  };
-}, {})(AddItemForm);
+export default connect(
+  state => {
+    return {
+      productData: state.productData,
+      error: state.error,
+      isFetching: state.isFetching
+    };
+  },
+  { createProduct }
+)(AddItemForm);
