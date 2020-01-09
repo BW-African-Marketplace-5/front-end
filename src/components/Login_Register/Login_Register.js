@@ -128,6 +128,7 @@ const Login_Register = props => {
     const isValid = validateRegister(formValue);
     console.log("registering...", formValue);
     if(isValid){
+      setSpin(true);
       const values = { //values to pass from state
         username: formValue.username,
         password: formValue.password
@@ -142,11 +143,13 @@ const Login_Register = props => {
       })
       .catch(error => {
         console.log('There was an error:', error.message);
+        setForm({ username: "", password: "", validate_password:"" });
+        setSpin(false);
         setWarning(true); //displays warning
         setError(error.message)
       })
       .finally(() => {
-        setForm({ username: "", password: "" });
+        setForm({ username: "", password: "", validate_password:"" });
       });
     }else{
       setWarning(true);
@@ -263,10 +266,11 @@ const Login_Register = props => {
                         name="validate_password" 
                         id="validate_password" 
                         placeholder="Confirm Password" 
-                        value={formValue.checkPass}
+                        value={formValue.validate_password}
                         onChange={handleChanges}
                     />
                 </InputWrapper>
+                { spinner ? (<Spinner size="sm" color="secondary" />) : (<br></br>)}
                  <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
                  {error}
             </Alert>

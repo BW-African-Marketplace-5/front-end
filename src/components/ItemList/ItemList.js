@@ -4,7 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
 import Footer from "../Footer/Footer";
 import { Wrapper, ItemWrapper, Title } from "./Item_List_Styles";
-import { Input, Alert } from "reactstrap";
+import { Input, Alert, Spinner } from "reactstrap";
 import { fetchProducts } from "../../actions/actions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
@@ -105,7 +105,8 @@ const ItemList = props => {
         <button onClick={() => props.history.push("/item-form")}>
           Add Product
         </button>
-        <section>{listRender}</section>
+        <Spinner type="grow" color="warning" />
+        {(!listRender) ? <Spinner type="grow" color="warning" /> : <section>{listRender}</section>}
         <Footer />
       </Wrapper>
     </>
