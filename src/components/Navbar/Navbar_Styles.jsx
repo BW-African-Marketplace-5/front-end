@@ -52,3 +52,15 @@ export const RightText = styled(NavbarText)`
     color:#dc3545 !important;
     font-weight:500;
 `
+export const UserMenu = styled(UncontrolledDropdown)`
+    a{
+        color: #dc3545
+    }
+`
+export const LogOut = styled(DropdownItem)`
+   :hover{
+       background:white;
+       font-weight: 500;
+       color: #dc3545
+   }
+`
