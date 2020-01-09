@@ -12,7 +12,7 @@ import {
   Submit,
   PassRecovery
 } from "./Login_Register_Styles";
-import Navbar from "../Navbar/TestNav"; //Test NavBar 
+import Navbar from "../Navbar/Navigation"; //Test NavBar 
 import Footer from "../Footer/Footer";
 import logo from "../../imgs/evends.png";
 import axiosWithAuth from "../../utils/axiosWithAuth";
