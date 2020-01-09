@@ -106,7 +106,7 @@ const Login_Register = props => {
       .then(response => {
         alert(response.data.message); //Alerts User of Login
         localStorage.setItem("token", response.data.token);
-        props.history.push("/item-list");
+        props.history.push("/home");
       })
       .catch(error => {
         console.log('There was an error:', error.message);

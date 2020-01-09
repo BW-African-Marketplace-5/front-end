@@ -1,8 +1,15 @@
 import React from 'react';
+import Carousel from "../Carousel/Carousel";
+import Navbar from "../Navbar/LoggedinNav";
+import Footer from '../Footer/Footer';
 
 const Home= () => {
     return (
-       <div></div>
+        <>
+       <Navbar/>
+       <Carousel/>
+       <Footer/>
+       </>
     );
 }
 
