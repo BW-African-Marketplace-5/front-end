@@ -86,6 +86,8 @@ const ItemList = props => {
     );
   }
 
+  console.log(props.productData);
+
   return (
     <>
       <Navbar user={user}/>

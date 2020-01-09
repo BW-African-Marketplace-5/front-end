@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Typed from 'react-typed'
-import {MdAccountCircle} from 'react-icons/md'
+import React, { useState } from "react";
+import Typed from "react-typed";
+import { MdAccountCircle } from "react-icons/md";
 import {
   Collapse,
   Navbar,
@@ -9,34 +9,36 @@ import {
   Nav,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
-} from 'reactstrap';
+  DropdownItem
+} from "reactstrap";
 import {
-    Logo,
-    LinkWrapper,
-    MenuLink ,
-    RightText,
-    UserMenu,
-    LogOut
+  Logo,
+  LinkWrapper,
+  MenuLink,
+  RightText,
+  UserMenu,
+  LogOut
 } from "./Navbar_Styles";
 import logo from "../../imgs/evends.png";
 
-const Navigation = (props) => {
+const Navigation = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   let user = props.user;
-  console.log('Navigation User:', props.user)
+  console.log("Navigation User:", props.user);
   //Typed JS Configuration
   var options = {
-        strings: [`WELCOME ${user}`],
-        typeSpeed: 80,
-        backSpeed: 80
+    strings: [`WELCOME ${user}`],
+    typeSpeed: 80,
+    backSpeed: 80
   };
 
   return (
     <div>
-      <Navbar fixed='top'color="light" light expand="md">
-        <NavbarBrand href="/"><Logo src={logo}></Logo></NavbarBrand>
+      <Navbar fixed="top" color="light" light expand="md">
+        <NavbarBrand href="/">
+          <Logo src={logo}></Logo>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -51,35 +53,39 @@ const Navigation = (props) => {
             </LinkWrapper>
           </Nav>
           <RightText>
-        
-            {(props.user) ? 
-            <Typed style={{marginRight:'10px', textTransform:'uppercase'}} strings={options.strings} typeSpeed={options.typeSpeed} backSpeed={options.backSpeed}/>
-            : 'LOADING...'}
-            
-            </RightText>
+            {props.user ? (
+              <Typed
+                style={{ marginRight: "10px", textTransform: "uppercase" }}
+                strings={options.strings}
+                typeSpeed={options.typeSpeed}
+                backSpeed={options.backSpeed}
+              />
+            ) : (
+              "LOADING..."
+            )}
+          </RightText>
           <Nav>
             <UserMenu nav inNavbar>
               <DropdownToggle nav caret>
-                <MdAccountCircle/> ACCOUNT
+                <MdAccountCircle /> ACCOUNT
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  Post Items
-                </DropdownItem>
-                <DropdownItem>
-                  My Posts
-                </DropdownItem>
+                <DropdownItem>Post Items</DropdownItem>
+                <DropdownItem>My Posts</DropdownItem>
                 <DropdownItem divider />
-                <LogOut onClick={() => window.localStorage.clear("token")} href="/">
+                <LogOut
+                  onClick={() => window.localStorage.clear("token")}
+                  href="/"
+                >
                   Log Out
                 </LogOut>
               </DropdownMenu>
             </UserMenu>
-            </Nav>
+          </Nav>
         </Collapse>
       </Navbar>
     </div>
   );
-}
+};
 
 export default Navigation;
