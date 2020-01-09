@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-    Card, CardText, CardBody,
+    Card, CardImg, CardBody,
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
 
@@ -41,4 +41,7 @@ export const SubTitle = styled(CardSubtitle)`
     font-weight:bold;
     font-size: 1rem;
     margin: 1%;
+`
+export const ProductImg = styled.img`
+   height: 250px;
 `

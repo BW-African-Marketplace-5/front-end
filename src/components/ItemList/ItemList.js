@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
 import Footer from "../Footer/Footer";
-import { Wrapper, ItemWrapper, Title } from "./Item_List_Styles";
-import { Input, Alert, Spinner } from "reactstrap";
+import { Wrapper, ItemWrapper, Title, SearchBar, Heading, SearchInput } from "./Item_List_Styles";
+import { InputGroupAddon, InputGroupText, Spinner } from "reactstrap";
+import {FaSearch} from 'react-icons/fa';
 import { fetchProducts } from "../../actions/actions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
@@ -12,6 +13,7 @@ const ItemList = props => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [user, setUser] = useState();
+  const [Loaded, setLoading] = useState(false);
   // let products = props.productData;
   // console.log(
   //   "The props are:",
@@ -35,7 +37,14 @@ const ItemList = props => {
 
   useEffect(() => {
     props.fetchProducts();
+    if(listRender){
+      setLoading(true)
+    }else{
+      setLoading(false);
+    } 
+    console.log('Fetching Products....')
   }, []); //Get Product Data Use Effect
+
   //SearchBar Functionality
   useEffect(() => {
     const results = props.productData.filter(
@@ -71,6 +80,7 @@ const ItemList = props => {
         ))}
       </ItemWrapper>
     );
+ 
   } else {
     listRender = (
       <ItemWrapper>
@@ -86,28 +96,33 @@ const ItemList = props => {
     );
   }
 
-  console.log(props.productData);
+  console.log(props);
 
   return (
     <>
       <Navbar market={true} user={user} />
       <Wrapper>
+      <Heading>
         <Title>MARKET PLACE</Title>
-        <form>
-          <Input
+        <SearchBar>
+        <InputGroupAddon addonType="prepend">
+          <InputGroupText><FaSearch/></InputGroupText>
+        </InputGroupAddon>
+        <SearchInput
             onChange={handleChanges}
             value={searchTerm}
             type="search"
             placeholder="Search Products"
             name="search"
           />
-        </form>
+      </SearchBar>
+      </Heading>
         <button onClick={() => props.history.push("/item-form")}>
           Add Product
         </button>
-        <Spinner type="grow" color="warning" />
-        {(!listRender) ? <Spinner type="grow" color="warning" /> : <section>{listRender}</section>}
-        <Footer />
+        {/* <Spinner type="grow" color="warning" /> */}
+      {(!Loaded) ? (<section><Spinner color="danger" /><br/>Loading...</section>) : (<section>{listRender}</section>)}
+        {(!Loaded) ? <div></div> : <Footer />}
       </Wrapper>
     </>
   );

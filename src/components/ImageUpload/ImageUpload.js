@@ -1,5 +1,11 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import {
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from 'reactstrap'
 import axios from "axios";
 
 const ImageUpload = ({ setImage }) => {
@@ -36,7 +42,14 @@ const ImageUpload = ({ setImage }) => {
       {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <FormGroup>
+        <Label for="exampleFile">File</Label>
+        <Input type="file" name="file" id="exampleFile" />
+        <FormText color="muted">
+          This is some placeholder block-level help text for the above input.
+          It's a bit lighter and easily wraps to a new line.
+        </FormText>
+      </FormGroup>
       )}
     </div>
   );

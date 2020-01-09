@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import {
-  ItemWrapper,
+  ProductImg,
   ProductCard,
   Title,
   SubTitle,
   Price
 } from "./ItemCard_Styles";
-import { CardText, CardBody, CardImg } from "reactstrap";
+import { CardText, CardBody, CardImg, Collapse, Button } from "reactstrap";
 import { GiGrain, GiMeat, GiFruitBowl, GiFruiting } from "react-icons/gi";
 import axios from "axios";
 
 const ItemCard = props => {
   const [iconState, setIcon] = useState();
   const [imgURL, setImgURL] = useState();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
   // console.log('ItemCard Props:', props)
 
@@ -56,7 +58,9 @@ const ItemCard = props => {
   return (
     <ProductCard>
       <Title>{props.data.name}</Title>
-      <CardImg top width="100%" src={imgURL} alt="Card image cap" />
+      <ProductImg top width="100%" src={imgURL} alt={props.data.name} />
+      <Button onClick={toggle}>Description</Button>
+      <Collapse isOpen={isOpen}>
       <CardBody>
         {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
         <SubTitle>
@@ -66,9 +70,10 @@ const ItemCard = props => {
           Category: {iconState} {props.data.category}
         </SubTitle>
         <SubTitle>Market Area: {props.data.market_area}</SubTitle>
-        <SubTitle>Description: {props.data.description}</SubTitle>
+          <SubTitle>Description: {props.data.description}</SubTitle>
         <CardText></CardText>
       </CardBody>
+      </Collapse>
       <Price>Price: {props.data.price}</Price>
     </ProductCard>
   );
