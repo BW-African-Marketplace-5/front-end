@@ -117,11 +117,11 @@ const ItemList = props => {
           />
       </SearchBar>
       </Heading>
-        <button onClick={() => props.history.push("/item-form")}>
+        {/* <button onClick={() => props.history.push("/item-form")}>
           Add Product
-        </button>
+        </button> */}
         {/* <Spinner type="grow" color="warning" /> */}
-      {(!Loaded) ? (<section><Spinner color="danger" /><br/>Loading...</section>) : (<section>{listRender}</section>)}
+      {(!Loaded) ? (<div><Spinner color="danger"/><br/><p>Loading...</p></div>) : (listRender)}
         {(!Loaded) ? <div></div> : <Footer />}
       </Wrapper>
     </>

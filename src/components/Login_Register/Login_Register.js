@@ -22,27 +22,27 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 const Login_Register = props => {
   const [Login, setLogin] = useState(true); //Login/Register Form State
   const [formValue, setForm] = useState({ username: "", password: "", validate_password:"" }); //Form Value State
-  const [visibleAlert, setVisibleAlert] = useState(false); //Alert State
+  const [successAlert, setSuccessAlert] = useState(false); //Alert State
   const [visibleWarning, setWarning] = useState(false); //Alert State
   const [error, setError] = useState(''); //Error State
   const [spinner, setSpin] = useState(false); //Spinner
 
   console.log('The Form Values Are:', formValue)
   const onDismiss = () => {
-      setVisibleAlert(false);
+      setSuccessAlert(false);
       setWarning(false);
   }
   //Set Login State to 'Register' : Toggles Register Form
   const Register = () => {
     setLogin(false);
-    setVisibleAlert(false);
+    setSuccessAlert(false);
     setWarning(false);
     setForm({ username: '', password: '', validate_password:'' });
   };
   //Set Login State to 'Login' : Toggles Login Form
   const Login_set = () => {
     setLogin(true);
-    setVisibleAlert(false);
+    setSuccessAlert(false);
     setWarning(false);
     setForm({ username: '', password: '', validate_password:'' });
   };
@@ -138,7 +138,8 @@ const Login_Register = props => {
       .then(response => {
         console.log('successfully registered:',response);
         setLogin(true); //Sets Form State to Login
-        setVisibleAlert(true); //Makes Login Alert Visible
+        setSuccessAlert(true); //Makes Login Alert Visible
+        setSpin(false); //Turns off spin after successful register
         // alert("Please sign in."); //Prompts User To Login
       })
       .catch(error => {
@@ -210,7 +211,7 @@ const Login_Register = props => {
               <Submit>Login</Submit>
               </InputWrapper>
               { spinner ? (<Spinner size="sm" color="secondary" />) : (<br></br>)}
-              <Alert color="success" isOpen={visibleAlert} toggle={onDismiss}>
+              <Alert color="success" isOpen={successAlert} toggle={onDismiss}>
                     Success! — Please Login!
                 </Alert>
             <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>

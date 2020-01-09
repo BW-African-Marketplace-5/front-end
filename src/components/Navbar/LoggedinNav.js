@@ -36,7 +36,7 @@ const Navigation = props => {
   return (
     <div>
       <Navbar fixed="top" color="light" light expand="md">
-        <NavbarBrand href="/">
+        <NavbarBrand href="/home">
           <Logo src={logo}></Logo>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />

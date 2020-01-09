@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    width:100%;
 `
 export const ItemWrapper = styled.div`
     display:flex;
