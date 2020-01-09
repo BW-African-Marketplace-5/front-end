@@ -22,7 +22,7 @@ const initialValues = {
   name: "",
   description: "",
   price: "",
-  photo: ""
+  image_url: ""
 };
 
 const AddItemForm = props => {
@@ -31,7 +31,7 @@ const AddItemForm = props => {
     currentUserId: null,
     currentUsername: ""
   });
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     axiosWithAuth()
@@ -48,7 +48,7 @@ const AddItemForm = props => {
     setNewProduct({
       ...newProduct,
       [e.target.name]: e.target.value,
-      photo: image
+      image_url: image
     });
   };
 

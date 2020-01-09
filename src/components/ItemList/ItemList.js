@@ -11,7 +11,7 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 const ItemList = props => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [user, setUser]= useState();
+  const [user, setUser] = useState();
   // let products = props.productData;
   // console.log(
   //   "The props are:",
@@ -20,18 +20,18 @@ const ItemList = props => {
   //   })
   // );
   //Get Current User From Backend
-  useEffect(()=>{
+  useEffect(() => {
     axiosWithAuth()
-    .get('https://evendsapi.herokuapp.com/api/users/current')
-    .then(response => {
-      console.log('Current User:', response);
-      setUser(response.data.currentUsername);
-    })
-    .catch(error =>{
-        console.log('Username Get Error:', error)
-        setUser('USERNAME NOT FOUND')
-    })
-  }, []) //Get Current User UseEffect
+      .get("https://evendsapi.herokuapp.com/api/users/current")
+      .then(response => {
+        console.log("Current User:", response);
+        setUser(response.data.currentUsername);
+      })
+      .catch(error => {
+        console.log("Username Get Error:", error);
+        setUser("USERNAME NOT FOUND");
+      });
+  }, []); //Get Current User UseEffect
 
   useEffect(() => {
     props.fetchProducts();
@@ -90,7 +90,7 @@ const ItemList = props => {
 
   return (
     <>
-      <Navbar user={user}/>
+      <Navbar user={user} />
       <Wrapper>
         <Title>MARKET PLACE</Title>
         <form>
