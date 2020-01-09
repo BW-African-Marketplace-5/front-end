@@ -14,6 +14,7 @@ import LoggedinNav from "../Navbar/LoggedinNav";
 import Footer from "../Footer/Footer";
 import { createProduct } from "../../actions/actions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import ImageUpload from "../ImageUpload/ImageUpload";
 
 const initialValues = {
   category: "",
@@ -29,6 +30,7 @@ const AddItemForm = props => {
     currentUserId: null,
     currentUsername: ""
   });
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     axiosWithAuth()
@@ -121,6 +123,9 @@ const AddItemForm = props => {
                   <option>Uganda</option>
                   <option>Ethiopia</option>
                 </select>
+              </InputWrapper>
+              <InputWrapper>
+                <ImageUpload setImage={setImage} />
               </InputWrapper>
               <Submit>Submit</Submit>
             </div>
