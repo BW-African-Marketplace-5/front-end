@@ -33,6 +33,7 @@ const ItemCard = props => {
     <ProductCard>
       <Title>{props.data.name}</Title>
       <CardBody>
+        {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
         <SubTitle>
           Category: {iconState} {props.data.category}
         </SubTitle>
