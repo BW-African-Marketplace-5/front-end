@@ -3,9 +3,17 @@ import { connect } from "react-redux";
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
 import Footer from "../Footer/Footer";
-import { Wrapper, ItemWrapper, Title, SearchBar, Heading, SearchInput } from "./Item_List_Styles";
+import {
+  Wrapper,
+  ItemWrapper,
+  Title,
+  SearchBar,
+  Heading,
+  SearchInput,
+  AddButton
+} from "./Item_List_Styles";
 import { InputGroupAddon, InputGroupText, Spinner } from "reactstrap";
-import {FaSearch} from 'react-icons/fa';
+import { FaSearch } from "react-icons/fa";
 import { fetchProducts } from "../../actions/actions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
@@ -37,12 +45,12 @@ const ItemList = props => {
 
   useEffect(() => {
     props.fetchProducts();
-    if(listRender){
-      setLoading(true)
-    }else{
+    if (listRender) {
+      setLoading(true);
+    } else {
       setLoading(false);
-    } 
-    console.log('Fetching Products....')
+    }
+    console.log("Fetching Products....");
   }, []); //Get Product Data Use Effect
 
   //SearchBar Functionality
@@ -80,7 +88,6 @@ const ItemList = props => {
         ))}
       </ItemWrapper>
     );
- 
   } else {
     listRender = (
       <ItemWrapper>
@@ -102,27 +109,37 @@ const ItemList = props => {
     <>
       <Navbar market={true} user={user} />
       <Wrapper>
-      <Heading>
-        <Title>MARKET PLACE</Title>
-        <SearchBar>
-        <InputGroupAddon addonType="prepend">
-          <InputGroupText><FaSearch/></InputGroupText>
-        </InputGroupAddon>
-        <SearchInput
-            onChange={handleChanges}
-            value={searchTerm}
-            type="search"
-            placeholder="Search Products"
-            name="search"
-          />
-      </SearchBar>
-      </Heading>
-        <button onClick={() => props.history.push("/item-form")}>
+        <Heading>
+          <Title>MARKET PLACE</Title>
+          <SearchBar>
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <FaSearch />
+              </InputGroupText>
+            </InputGroupAddon>
+            <SearchInput
+              onChange={handleChanges}
+              value={searchTerm}
+              type="search"
+              placeholder="Search Products"
+              name="search"
+            />
+          </SearchBar>
+        </Heading>
+        <AddButton onClick={() => props.history.push("/item-form")}>
           Add Product
-        </button>
+        </AddButton>
         {/* <Spinner type="grow" color="warning" /> */}
-      {(!Loaded) ? (<section><Spinner color="danger" /><br/>Loading...</section>) : (<section>{listRender}</section>)}
-        {(!Loaded) ? <div></div> : <Footer />}
+        {!Loaded ? (
+          <section>
+            <Spinner color="danger" />
+            <br />
+            Loading...
+          </section>
+        ) : (
+          <section>{listRender}</section>
+        )}
+        {!Loaded ? <div></div> : <Footer />}
       </Wrapper>
     </>
   );
