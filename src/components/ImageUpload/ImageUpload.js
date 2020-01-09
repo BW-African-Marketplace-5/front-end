@@ -7,7 +7,6 @@ const ImageUpload = ({ setImage }) => {
     // Do something with the files
 
     const data = new FormData();
-    console.log(data);
     for (let i = 0; i < acceptedFiles.length; i++) {
       let file = acceptedFiles[i];
       data.append("image", file);
@@ -22,7 +21,6 @@ const ImageUpload = ({ setImage }) => {
       }
     })
       .then(res => {
-        console.log(res);
         setImage(res.data.data.link);
       })
       .catch(err => err.message);

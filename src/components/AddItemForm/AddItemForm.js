@@ -21,7 +21,8 @@ const initialValues = {
   market_area: "",
   name: "",
   description: "",
-  price: ""
+  price: "",
+  photo: ""
 };
 
 const AddItemForm = props => {
@@ -44,7 +45,11 @@ const AddItemForm = props => {
 
   const handleChanges = e => {
     e.preventDefault();
-    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
+    setNewProduct({
+      ...newProduct,
+      [e.target.name]: e.target.value,
+      photo: image
+    });
   };
 
   const handleSubmit = () => {
@@ -54,6 +59,7 @@ const AddItemForm = props => {
 
   console.log(newProduct);
   console.log(currentUser.currentUserId);
+  console.group(`image: ${image}`);
 
   return (
     <div>
