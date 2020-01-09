@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-    Card, CardImg, CardBody,
+    Card, CardImgOverlay, CardText,
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
 
@@ -14,16 +14,20 @@ export const ItemWrapper = styled.div`
 export const ProductCard = styled(Card)`
   width: 25%;
   margin: 1%;
-  border-radius: 0;
-  border:none;
-  background: #ffffffb3;
+  background: black;
+  border: none;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 `
 export const Title = styled(CardTitle)`
     color:white;
     background-color: #e33734;
     font-weight:bold;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    padding: 2.5%;
     margin-bottom:0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 `
 export const Price = styled(CardSubtitle)`
     color:white;
@@ -31,17 +35,42 @@ export const Price = styled(CardSubtitle)`
     font-weight:bold;
     font-size: 1rem;
     padding: 2%;
-    :hover{
-        color:#e33734;
-        background-color:white;
-    }
 `
 export const SubTitle = styled(CardSubtitle)`
-    color:#e33734
+    color:#e33734;
     font-weight:bold;
     font-size: 1rem;
     margin: 1%;
 `
 export const ProductImg = styled.img`
    height: 250px;
+   opacity: 0.7;
+`
+export const CardOverlay = styled (CardImgOverlay)`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index: 0;
+`
+export const OverlayText = styled (CardText)`
+  color:white;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: #000000b8;
+  padding: 5%;
+`
+export const DescriptionButton = styled (Button)`
+  background:white;
+  color:#e33734;
+  width:100%;
+  border: 0;
+  border-radius: 0;
+  font-weight: 600;
+  z-index: 1;
+  &:hover{
+      background:white;
+      color: #e33734;
+  }
+
 `

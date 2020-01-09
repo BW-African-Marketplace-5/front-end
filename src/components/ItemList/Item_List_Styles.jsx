@@ -30,6 +30,7 @@ export const Heading = styled.div`
   width: 100%;
   padding: 2%;
   background-color: #e33734;
+  margin-bottom: 2%;
 `;
 export const SearchBar = styled(InputGroup)`
   width: 50%;

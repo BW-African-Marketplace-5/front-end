@@ -4,54 +4,46 @@ import {
   ProductCard,
   Title,
   SubTitle,
-  Price
+  Price,
+  CardOverlay,
+  DescriptionButton,
+  OverlayText
 } from "./ItemCard_Styles";
-import { CardText, CardBody, CardImg, Collapse, Button } from "reactstrap";
+import { CardText, CardBody, Collapse, Button } from "reactstrap";
 import { GiGrain, GiMeat, GiFruitBowl, GiFruiting } from "react-icons/gi";
-import axios from "axios";
+import Fruits from '../../imgs/fruits.jpg';
+import Meats from '../../imgs/meats.jpg';
+import Vegetables from '../../imgs/vegetables.jpg';
+import Wheat from '../../imgs/wheat.jpg';
+import Other from '../../imgs/other.jpg';
+
 
 const ItemCard = props => {
   const [iconState, setIcon] = useState();
-  const [imgURL, setImgURL] = useState();
+  const [imgURL, setImg] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  // console.log('ItemCard Props:', props)
-
-  //PIXAYBAY API
-  useEffect(() => {
-    const searchTerm = props.data.name;
-    searchTerm.replace(/\s+/g, "");
-    // console.log("Deleted Space In Object Name:", searchTerm);
-    axios
-      .get(
-        `https://pixabay.com/api/?key=13098636-bcd07a2dc6bf83f56dd84d630&q=${props.data.name}&image_type=photo&category=food`
-      )
-      .then(response => {
-        const random = () => {
-          return Math.floor(Math.random() * 20 + 1);
-        };
-        // console.log('Search Term:', props.data.name)
-        // console.log('PixaBay API Response:', response.data.hits[random()]);
-        setImgURL(response.data.hits[random()].webformatURL);
-      })
-      .catch(error => {
-        // console.log("PixaBay API Error:", error);
-      });
-  }, [props.data.name]);
 
   useEffect(() => {
     if (props.data.category === "Grains") {
       setIcon(<GiGrain />);
+      setImg(Wheat);
     }
     if (props.data.category === "Meats") {
       setIcon(<GiMeat />);
+      setImg(Meats);
     }
     if (props.data.category === "Vegetables") {
       setIcon(<GiFruiting />);
+      setImg(Vegetables);
     }
     if (props.data.category === "Fruits") {
       setIcon(<GiFruitBowl />);
+      setImg(Fruits);
+    }
+    if(props.data.category === "Other"){
+      setImg(Other);
     }
   }, [props.data.category]);
 
@@ -59,7 +51,13 @@ const ItemCard = props => {
     <ProductCard>
       <Title>{props.data.name}</Title>
       <ProductImg top width="100%" src={imgURL} alt={props.data.name} />
-      <Button onClick={toggle}>Description</Button>
+      <CardOverlay>
+          <OverlayText>{props.data.description}</OverlayText>
+          <CardText>
+            <small className="text-muted">Last updated 3 mins ago</small>
+          </CardText>
+        </CardOverlay>
+      <DescriptionButton onClick={toggle}>Description</DescriptionButton>
       <Collapse isOpen={isOpen}>
       <CardBody>
         {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
