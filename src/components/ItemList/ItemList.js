@@ -2,24 +2,20 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
-import Carousel from '../Carousel/Carousel';
-import Footer from '../Footer/Footer';
-import {
-  Wrapper, 
-  ItemWrapper, 
-  Title
-} from './Item_List_Styles';
-import {Input} from 'reactstrap';
+import Carousel from "../Carousel/Carousel";
+import Footer from "../Footer/Footer";
+import { Wrapper, ItemWrapper, Title } from "./Item_List_Styles";
+import { Input } from "reactstrap";
 import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
-  let products = props.productData;
-  console.log(
-    "The props are:",
-    products.forEach(item => {
-      console.log(item.category);
-    })
-  );
+  // let products = props.productData;
+  // console.log(
+  //   "The props are:",
+  //   products.forEach(item => {
+  //     console.log(item.category);
+  //   })
+  // );
 
   useEffect(() => {
     props.fetchProducts();
@@ -53,7 +49,12 @@ const ItemList = props => {
     listRender = (
       <ItemWrapper>
         {props.productData.map(item => (
-          <ItemCard key={item.id} data={item} allData={props.productData} />
+          <ItemCard
+            key={item.id}
+            data={item}
+            allData={props.productData}
+            username={props.productData.username}
+          />
         ))}
       </ItemWrapper>
     );
@@ -61,7 +62,12 @@ const ItemList = props => {
     listRender = (
       <ItemWrapper>
         {searchResults.map(item => (
-          <ItemCard key={item.id} data={item} allData={props.productData} />
+          <ItemCard
+            key={item.id}
+            data={item}
+            allData={props.productData}
+            username={props.productData.username}
+          />
         ))}
       </ItemWrapper>
     );
@@ -86,7 +92,7 @@ const ItemList = props => {
           Add Product
         </button>
         <section>{listRender}</section>
-        <Footer/>
+        <Footer />
       </Wrapper>
     </>
   );
