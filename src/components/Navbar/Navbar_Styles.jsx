@@ -39,7 +39,7 @@ export const LinkWrapper = styled(NavItem)`
 `
 export const MenuLink = styled(NavLink)`
     color:#dc3545 !important;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid  #f8f9fa;
     :hover {
 		color:#dc3545 !important;
         cursor: pointer !important;
