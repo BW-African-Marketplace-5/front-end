@@ -2,20 +2,12 @@ import styled from "styled-components";
 import { Input, InputGroup } from "reactstrap";
 
 export const Wrapper = styled.div`
-<<<<<<< HEAD
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
     width:100%;
 `
-=======
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
->>>>>>> 440a184a96736d6ae4799ec19d5a779fce0f5ecd
 export const ItemWrapper = styled.div`
   display: flex;
   justify-content: center;

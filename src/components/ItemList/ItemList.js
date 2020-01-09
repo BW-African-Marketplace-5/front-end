@@ -109,7 +109,6 @@ const ItemList = props => {
     <>
       <Navbar market={true} user={user} />
       <Wrapper>
-<<<<<<< HEAD
       <Heading>
         <Title>MARKET PLACE</Title>
         <SearchBar>
@@ -131,39 +130,6 @@ const ItemList = props => {
         {/* <Spinner type="grow" color="warning" /> */}
       {(!Loaded) ? (<div><Spinner color="danger"/><br/><p>Loading...</p></div>) : (listRender)}
         {(!Loaded) ? <div></div> : <Footer />}
-=======
-        <Heading>
-          <Title>MARKET PLACE</Title>
-          <SearchBar>
-            <InputGroupAddon addonType="prepend">
-              <InputGroupText>
-                <FaSearch />
-              </InputGroupText>
-            </InputGroupAddon>
-            <SearchInput
-              onChange={handleChanges}
-              value={searchTerm}
-              type="search"
-              placeholder="Search Products"
-              name="search"
-            />
-          </SearchBar>
-        </Heading>
-        <AddButton onClick={() => props.history.push("/item-form")}>
-          Add Product
-        </AddButton>
-        {/* <Spinner type="grow" color="warning" /> */}
-        {!Loaded ? (
-          <section>
-            <Spinner color="danger" />
-            <br />
-            Loading...
-          </section>
-        ) : (
-          <section>{listRender}</section>
-        )}
-        {!Loaded ? <div></div> : <Footer />}
->>>>>>> 440a184a96736d6ae4799ec19d5a779fce0f5ecd
       </Wrapper>
     </>
   );
