@@ -25,7 +25,9 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         productData: action.payload,
-        error: null
+        error: null,
+        isFetching: false
+
       };
     case FETCH_PRODUCTS_FAILURE:
       return {

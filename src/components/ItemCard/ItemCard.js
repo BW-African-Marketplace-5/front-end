@@ -64,7 +64,7 @@ const ItemCard = props => {
       <CardBody>
         {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
         <SubTitle>
-          <img src={props.data.image_url} alt={props.data.name}/>
+          <img src={props.data.image_url}/>
         </SubTitle>
         <SubTitle>
           Category: {iconState} {props.data.category}

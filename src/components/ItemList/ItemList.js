@@ -21,7 +21,6 @@ const ItemList = props => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [user, setUser] = useState();
-  const [Loaded, setLoading] = useState(false);
   // let products = props.productData;
   // console.log(
   //   "The props are:",
@@ -45,11 +44,11 @@ const ItemList = props => {
 
   useEffect(() => {
     props.fetchProducts();
-    if (listRender) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
+    // if (props.productData) {
+    //   setLoading(true);
+    // } else {
+    //   setLoading(false);
+    // }
     console.log("Fetching Products....");
   }, []); //Get Product Data Use Effect
 
@@ -128,8 +127,8 @@ const ItemList = props => {
           Add Product
         </button> */}
         {/* <Spinner type="grow" color="warning" /> */}
-      {(!Loaded) ? (<div><Spinner color="danger"/><br/><p>Loading...</p></div>) : (listRender)}
-        {(!Loaded) ? <div></div> : <Footer />}
+      {(props.isFetching) ? (<div><Spinner color="danger"/><br/><p>Loading...</p></div>) : (listRender)}
+        {(props.isFetching) ? <div></div> : <Footer />}
       </Wrapper>
     </>
   );
