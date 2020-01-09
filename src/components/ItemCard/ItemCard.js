@@ -8,11 +8,8 @@ import {
 } from "./ItemCard_Styles";
 import { CardText, CardBody, Button } from "reactstrap";
 import { GiGrain, GiMeat, GiFruitBowl, GiFruiting } from "react-icons/gi";
-import { FaDollarSign } from "react-icons/fa";
 const ItemCard = props => {
   const [iconState, setIcon] = useState();
-  console.log("The Category Is:", props.data.category);
-  console.log("The Icons are:", iconState);
 
   useEffect(() => {
     if (props.data.category === "Grains") {
@@ -27,7 +24,7 @@ const ItemCard = props => {
     if (props.data.category === "Fruits") {
       setIcon(<GiFruitBowl />);
     }
-  }, []);
+  }, [props.data.category]);
 
   return (
     <ProductCard>

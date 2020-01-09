@@ -9,13 +9,13 @@ import { Input } from "reactstrap";
 import { fetchProducts } from "../../actions/actions";
 
 const ItemList = props => {
-  let products = props.productData;
-  console.log(
-    "The props are:",
-    products.forEach(item => {
-      console.log(item.category);
-    })
-  );
+  // let products = props.productData;
+  // console.log(
+  //   "The props are:",
+  //   products.forEach(item => {
+  //     console.log(item.category);
+  //   })
+  // );
 
   useEffect(() => {
     props.fetchProducts();
