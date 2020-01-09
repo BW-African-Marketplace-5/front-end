@@ -109,6 +109,7 @@ const AddItemForm = props => {
                   value={newProduct.category}
                   onChange={handleChanges}
                 >
+                  <option>Choose Category</option>
                   <option>Vegetables</option>
                   <option>Meats</option>
                   <option>Grains</option>
@@ -124,6 +125,7 @@ const AddItemForm = props => {
                   value={newProduct.market_area}
                   onChange={handleChanges}
                 >
+                  <option>Choose Location</option>
                   <option>Rwanda</option>
                   <option>Kenya</option>
                   <option>Uganda</option>
