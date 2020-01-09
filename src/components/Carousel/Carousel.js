@@ -8,7 +8,7 @@ import {
 import {SlideItem, Slideshow} from './Carousel_Styles';
 const items = [
   {
-    src: 'https://images.pexels.com/photos/667200/pexels-photo-667200.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    src: 'https://images.pexels.com/photos/389962/pexels-photo-389962.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1920',
     altText: 'Slide 1',
     caption: 'Slide 1'
   },
