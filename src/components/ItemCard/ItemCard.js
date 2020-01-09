@@ -6,10 +6,34 @@ import {
   SubTitle,
   Price
 } from "./ItemCard_Styles";
-import { CardText, CardBody, Button } from "reactstrap";
+import { CardText, CardBody, CardImg} from "reactstrap";
 import { GiGrain, GiMeat, GiFruitBowl, GiFruiting } from "react-icons/gi";
+import axios from 'axios';
 const ItemCard = props => {
   const [iconState, setIcon] = useState();
+  const [imgURL, setImgURL] = useState();
+
+    // console.log('ItemCard Props:', props)
+
+     //PIXAYBAY API
+     useEffect(()=>{
+       const searchTerm = props.data.name;
+       searchTerm.replace(/\s+/g,'');
+       console.log('Deleted Space In Object Name:',searchTerm); 
+      axios.get(`https://pixabay.com/api/?key=13098636-bcd07a2dc6bf83f56dd84d630&q=${props.data.name}&image_type=photo&min_width=320`)
+      .then(response=>{
+        const random = () =>{
+          return Math.floor((Math.random() * 20) + 1)
+        }
+        console.log('Search Term:', props.data.name)
+        console.log('PixaBay API Response:', response.data.hits[random()]);
+        setImgURL(response.data.hits[random()].webformatURL)
+
+      })
+      .catch(error=>{
+        console.log('PixaBay API Error:', error);
+      })
+    },[props.data.name]);
 
   useEffect(() => {
     if (props.data.category === "Grains") {
@@ -29,6 +53,7 @@ const ItemCard = props => {
   return (
     <ProductCard>
       <Title>{props.data.name}</Title>
+      <CardImg top width="100%" src={imgURL} alt="Card image cap" />
       <CardBody>
         {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
         <SubTitle>

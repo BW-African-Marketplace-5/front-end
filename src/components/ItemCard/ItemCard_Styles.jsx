@@ -23,12 +23,14 @@ export const Title = styled(CardTitle)`
     background-color: #e33734;
     font-weight:bold;
     font-size: 2rem;
+    margin-bottom:0;
 `
 export const Price = styled(CardSubtitle)`
     color:white;
     background-color: black;
     font-weight:bold;
     font-size: 1rem;
+    padding: 2%;
     :hover{
         color:#e33734;
         background-color:white;

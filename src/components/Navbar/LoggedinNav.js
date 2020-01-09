@@ -43,7 +43,7 @@ const Navigation = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <LinkWrapper>
-              <MenuLink href="/">HOME</MenuLink>
+              <MenuLink href="/home">HOME</MenuLink>
             </LinkWrapper>
             <LinkWrapper>
               <MenuLink href="/item-list">MARKET</MenuLink>

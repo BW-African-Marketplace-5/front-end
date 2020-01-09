@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import ItemCard from "../ItemCard/ItemCard";
 import Navbar from "../Navbar/LoggedinNav";
-import Carousel from "../Carousel/Carousel";
 import Footer from "../Footer/Footer";
 import { Wrapper, ItemWrapper, Title } from "./Item_List_Styles";
-import { Input } from "reactstrap";
+import { Input, Alert } from "reactstrap";
 import { fetchProducts } from "../../actions/actions";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
@@ -20,20 +19,24 @@ const ItemList = props => {
   //     console.log(item.category);
   //   })
   // );
+  //Get Current User From Backend
   useEffect(()=>{
     axiosWithAuth()
-  .get('https://evendsapi.herokuapp.com/api/users/current')
-  .then(response => {
-    console.log('Current User:', response);
-    setUser(response.data.currentUsername);
-  })
-  .catch()
+    .get('https://evendsapi.herokuapp.com/api/users/current')
+    .then(response => {
+      console.log('Current User:', response);
+      setUser(response.data.currentUsername);
+    })
+    .catch(error =>{
+        console.log('Username Get Error:', error)
+        setUser('USERNAME NOT FOUND')
+    })
   }, []) //Get Current User UseEffect
 
   useEffect(() => {
     props.fetchProducts();
   }, []); //Get Product Data Use Effect
-
+  //SearchBar Functionality
   useEffect(() => {
     const results = props.productData.filter(
       descriptions =>
@@ -89,8 +92,7 @@ const ItemList = props => {
     <>
       <Navbar user={user}/>
       <Wrapper>
-        <Carousel />
-        <Title>Product List</Title>
+        <Title>MARKET PLACE</Title>
         <form>
           <Input
             onChange={handleChanges}
