@@ -23,7 +23,7 @@ const ItemCard = props => {
     // console.log("Deleted Space In Object Name:", searchTerm);
     axios
       .get(
-        `https://pixabay.com/api/?key=13098636-bcd07a2dc6bf83f56dd84d630&q=${props.data.name}&image_type=photo&min_width=320`
+        `https://pixabay.com/api/?key=13098636-bcd07a2dc6bf83f56dd84d630&q=${props.data.name}&image_type=photo&category=food`
       )
       .then(response => {
         const random = () => {
@@ -59,9 +59,9 @@ const ItemCard = props => {
       <CardImg top width="100%" src={imgURL} alt="Card image cap" />
       <CardBody>
         {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
-        {/* <SubTitle>
-          <img src={props.data.image_url} />
-        </SubTitle> */}
+        <SubTitle>
+          <img src={props.data.image_url} alt={props.data.name}/>
+        </SubTitle>
         <SubTitle>
           Category: {iconState} {props.data.category}
         </SubTitle>

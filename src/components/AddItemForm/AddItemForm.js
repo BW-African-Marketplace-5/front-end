@@ -63,7 +63,7 @@ const AddItemForm = props => {
 
   return (
     <div>
-      <LoggedinNav />
+      <LoggedinNav user={currentUser.currentUsername} postItems={true} />
       <Wrapper>
         <FormWrapper>
           <TopBar>

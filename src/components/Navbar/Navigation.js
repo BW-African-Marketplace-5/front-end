@@ -33,6 +33,8 @@ const Navigation = (props) => {
         backSpeed: 80
   };
 
+  //Active Link
+  
   
 
   return (
@@ -43,7 +45,7 @@ const Navigation = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <LinkWrapper>
-              <MenuLink href="/">HOME</MenuLink>
+              {(props.active) ? (<MenuLink href="/" className='active'>HOME</MenuLink>) : (<MenuLink href="/" >HOME</MenuLink>)}
             </LinkWrapper>
             <LinkWrapper>
               <MenuLink href="https://github.com/reactstrap/reactstrap">ABOUT</MenuLink>

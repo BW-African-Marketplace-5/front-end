@@ -25,7 +25,7 @@ const Navigation = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   let user = props.user;
-  console.log("Navigation User:", props.user);
+  console.log("Navigation User:", props);
   //Typed JS Configuration
   var options = {
     strings: [`WELCOME ${user}`],
@@ -43,13 +43,13 @@ const Navigation = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <LinkWrapper>
-              <MenuLink href="/home">HOME</MenuLink>
+              {(props.home) ? (<MenuLink href="/home" active>HOME</MenuLink>) : (<MenuLink href="/home">HOME</MenuLink>)}
             </LinkWrapper>
             <LinkWrapper>
-              <MenuLink href="/item-list">MARKET</MenuLink>
+            {(props.market) ? (<MenuLink href="/item-list" active>MARKET</MenuLink>) : (<MenuLink href="/item-list">MARKET</MenuLink>)}
             </LinkWrapper>
             <LinkWrapper>
-              <MenuLink href="/item-form">POST ITEMS</MenuLink>
+            {(props.postItems) ? (<MenuLink href="/item-form" active>POST ITEMS</MenuLink>) : (<MenuLink href="/item-form">POST ITEMS</MenuLink>)}
             </LinkWrapper>
           </Nav>
           <RightText>

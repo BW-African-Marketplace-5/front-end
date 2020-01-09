@@ -90,7 +90,7 @@ const ItemList = props => {
 
   return (
     <>
-      <Navbar user={user} />
+      <Navbar market={true} user={user} />
       <Wrapper>
         <Title>MARKET PLACE</Title>
         <form>

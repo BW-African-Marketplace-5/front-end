@@ -40,12 +40,21 @@ export const LinkWrapper = styled(NavItem)`
 export const MenuLink = styled(NavLink)`
     color:#dc3545 !important;
     border-bottom: 2px solid  #f8f9fa;
-    :hover {
+    font-weight:500;
+    margin: 0 5px;
+    &:hover {
 		color:#dc3545 !important;
         cursor: pointer !important;
         border-bottom: 2px solid #dc3545;
     }
-    font-weight:500;
+    &.nav-link.active{
+        
+        color:#dc3545 !important;
+        cursor: pointer !important;
+        border-bottom: 2px solid #dc3545 !important;
+        
+    }
+    
 
 `
 export const RightText = styled(NavbarText)`
