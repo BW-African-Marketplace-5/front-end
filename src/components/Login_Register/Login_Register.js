@@ -202,17 +202,17 @@ const Login_Register = props => {
                   onChange={handleChanges}
                 />
               </InputWrapper>
+            <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery> 
+              <InputWrapper>
+              <Submit>Login</Submit>
+              </InputWrapper>
+              { spinner ? (<Spinner size="sm" color="secondary" />) : (<br></br>)}
               <Alert color="success" isOpen={visibleAlert} toggle={onDismiss}>
                     Success! — Please Login!
                 </Alert>
             <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
                 {error}
             </Alert>
-            <PassRecovery>Forgot <a className='passwordLink' href="/" >Password?</a></PassRecovery> 
-              <InputWrapper>
-              <Submit>Login</Submit>
-              </InputWrapper>
-              { spinner ? (<Spinner size="sm" color="secondary" />) : (<br></br>)}
             </Form>
           </FormWrapper>
         </Wrapper>

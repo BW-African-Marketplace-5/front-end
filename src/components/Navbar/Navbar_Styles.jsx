@@ -24,7 +24,7 @@ export const Navigation = styled(Nav)`
   
 `
 export const Logo = styled.img`
-    width:125px;
+    width:150px;
 `
 export const NavWrapper = styled.div`
     display:flex;
@@ -39,10 +39,14 @@ export const LinkWrapper = styled(NavItem)`
 `
 export const MenuLink = styled(NavLink)`
     color:#dc3545 !important;
+    border-bottom: 2px solid white;
     :hover {
 		color:#dc3545 !important;
-		cursor: pointer !important;
-	}
+        cursor: pointer !important;
+        border-bottom: 2px solid #dc3545;
+    }
+    font-weight:500;
+
 `
 export const RightText = styled(NavbarText)`
     color:#dc3545 !important;

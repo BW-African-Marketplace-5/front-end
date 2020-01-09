@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Typed from 'react-typed'
 import {
   Collapse,
   Navbar,
@@ -25,10 +26,11 @@ const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  //typed.js
+  //Typed JS Configuration
   var options = {
-        strings: ['<i>First</i> sentence.', '&amp; a second sentence.'],
-        typeSpeed: 40
+        strings: ['<b>BUY</b>', '<b>SELL</b>', '<b>TRADE</b>', '<b>COMPARE</b>'],
+        typeSpeed: 80,
+        backSpeed: 80
   };
 
   
@@ -67,7 +69,7 @@ const Navigation = (props) => {
               </DropdownMenu>
             </UncontrolledDropdown> */}
           </Nav>
-        <RightText>AFRICAN MARKETPLACE</RightText>
+        <RightText><Typed style={{marginRight:'10px'}} strings={options.strings} typeSpeed={options.typeSpeed} backSpeed={options.backSpeed}loop/>IN AFRICA'S <b><i>NEWEST</i></b> MARKETPLACE</RightText>
         </Collapse>
       </Navbar>
     </div>
