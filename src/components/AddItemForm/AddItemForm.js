@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchCurrentUser } from "../../actions/actions";
 import {
   Wrapper,
   FormWrapper,

@@ -15,40 +15,12 @@ import {
 import { InputGroupAddon, InputGroupText, Spinner } from "reactstrap";
 import { FaSearch } from "react-icons/fa";
 import { fetchProducts } from "../../actions/actions";
-import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const ItemList = props => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [user, setUser] = useState();
-  // let products = props.productData;
-  // console.log(
-  //   "The props are:",
-  //   products.forEach(item => {
-  //     console.log(item.category);
-  //   })
-  // );
-  //Get Current User From Backend
-  useEffect(() => {
-    axiosWithAuth()
-      .get("https://evendsapi.herokuapp.com/api/users/current")
-      .then(response => {
-        console.log("Current User:", response);
-        setUser(response.data.currentUsername);
-      })
-      .catch(error => {
-        console.log("Username Get Error:", error);
-        setUser("USERNAME NOT FOUND");
-      });
-  }, []); //Get Current User UseEffect
-
   useEffect(() => {
     props.fetchProducts();
-    // if (props.productData) {
-    //   setLoading(true);
-    // } else {
-    //   setLoading(false);
-    // }
     console.log("Fetching Products....");
   }, []); //Get Product Data Use Effect
 
@@ -106,7 +78,7 @@ const ItemList = props => {
 
   return (
     <>
-      <Navbar market={true} user={user} />
+      <Navbar market={true}/>
       <Wrapper>
       <Heading>
         <Title>MARKET PLACE</Title>
@@ -123,10 +95,6 @@ const ItemList = props => {
           />
       </SearchBar>
       </Heading>
-        {/* <button onClick={() => props.history.push("/item-form")}>
-          Add Product
-        </button> */}
-        {/* <Spinner type="grow" color="warning" /> */}
       {(props.isFetching) ? (<div><Spinner color="danger"/><br/><p>Loading...</p></div>) : (listRender)}
         {(props.isFetching) ? <div></div> : <Footer />}
       </Wrapper>
