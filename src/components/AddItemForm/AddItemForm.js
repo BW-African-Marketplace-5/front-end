@@ -7,8 +7,10 @@ import {
   InputWrapper,
   Title,
   Submit,
-  TopBar
+  TopBar,
+  Heading
 } from "./Add_Item_Form_Styles";
+import {Input, Label} from 'reactstrap';
 
 import LoggedinNav from "../Navbar/LoggedinNav";
 import Footer from "../Footer/Footer";
@@ -65,15 +67,18 @@ const AddItemForm = props => {
     <div>
       <LoggedinNav postItems={true} />
       <Wrapper>
+        <Heading>
+            <Title>POST PRODUCTS</Title>
+        </Heading>
         <FormWrapper>
           <TopBar>
-            <Title>Add Product</Title>
+            <Title>Fill Out The Form</Title>
           </TopBar>
           <Form onSubmit={handleSubmit}>
             <div>
               <InputWrapper>
-                <label>Product:</label>
-                <input
+                <Label>Product:</Label>
+                <Input
                   type="text"
                   name="name"
                   placeholder="Beans"
@@ -82,8 +87,8 @@ const AddItemForm = props => {
                 />
               </InputWrapper>
               <InputWrapper>
-                <label>Description: </label>
-                <input
+                <Label>Description: </Label>
+                <Input
                   type="text"
                   name="description"
                   placeholder="5 pounds/Kidney"
@@ -92,8 +97,8 @@ const AddItemForm = props => {
                 />
               </InputWrapper>
               <InputWrapper>
-                <label>Price: </label>
-                <input
+                <Label>Price: </Label>
+                <Input
                   type="text"
                   name="price"
                   placeholder="300.00 RWF"
@@ -102,8 +107,9 @@ const AddItemForm = props => {
                 />
               </InputWrapper>
               <InputWrapper>
-                <label>Category: </label>
-                <select
+              <Label>Category: </Label>
+                <Input
+                  type="select"
                   name="category"
                   placeholder="Vegetables"
                   value={newProduct.category}
@@ -115,11 +121,12 @@ const AddItemForm = props => {
                   <option>Grains</option>
                   <option>Fruits</option>
                   <option>Other</option>
-                </select>
+                </Input>
               </InputWrapper>
               <InputWrapper>
-                <label>Market Location: </label>
-                <select
+              <Label>Market Area:</Label>
+                <Input
+                  type="select"
                   name="market_area"
                   placeholder="Rwanda"
                   value={newProduct.market_area}
@@ -130,9 +137,9 @@ const AddItemForm = props => {
                   <option>Kenya</option>
                   <option>Uganda</option>
                   <option>Ethiopia</option>
-                </select>
+                </Input>
               </InputWrapper>
-              <InputWrapper>
+              <InputWrapper style={{textAlign:"center"}}>
                 <ImageUpload setImage={setImage} />
               </InputWrapper>
               <Submit>Submit</Submit>
