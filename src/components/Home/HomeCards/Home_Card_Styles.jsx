@@ -18,12 +18,14 @@ export const ProductCard = styled(Card)`
 `
 export const Title = styled(CardTitle)`
     color:white;
-    background-color: #e33734;
     font-weight:bold;
     font-size: 1.5rem;
     padding: 2.5%;
     margin-bottom:0;
     z-index:1;
+    &:hover{
+      cursor:pointer;
+    }
 `
 export const Price = styled(CardSubtitle)`
     color:white;
@@ -40,7 +42,7 @@ export const SubTitle = styled(CardSubtitle)`
     margin: 1%;
 `
 export const ProductImg = styled.img`
-   opacity: 0.7;
+   opacity: 0.6;
 `
 export const CardOverlay = styled (CardImgOverlay)`
     display:flex;
@@ -49,12 +51,17 @@ export const CardOverlay = styled (CardImgOverlay)`
     flex-direction:column;
     z-index: 0;
 `
-export const OverlayText = styled (CardText)`
+export const OverlayButton = styled (Button)`
   color:white;
   font-weight: 600;
   text-transform: uppercase;
   background: #000000b8;
+  border: 0;
   padding: 5%;
+  width:50%;
+  &:hover{
+    background: #e33734;
+  }
 `
 export const DescriptionButton = styled (Button)`
   background:white;

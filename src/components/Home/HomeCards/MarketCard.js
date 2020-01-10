@@ -7,24 +7,25 @@ import {
     Price,
     CardOverlay,
     DescriptionButton,
-    OverlayText
-  } from './Card_Styles';
+    OverlayButton
+  } from './Home_Card_Styles';
 import { CardText, CardBody, Collapse, Button } from "reactstrap";
-import Meats from '../../../imgs/meats.jpg';
+import {FaStore} from 'react-icons/fa'
+import Market from '../../../imgs/market.jpeg'
 
-const MarketCard = () => {
+const MarketCard = (props) => {
 const [isOpen, setIsOpen] = useState(false);
 const toggle = () => setIsOpen(!isOpen);
 
     return (
     
         <ProductCard>
-        <ProductImg top width="100%" src={Meats} alt='Market' />
+        <ProductImg top width="100%" src={Market} alt='Market' />
         <CardOverlay>
-            <OverlayText>Description</OverlayText>
-            <CardText>
+            <OverlayButton><Title><FaStore size='2em'/> VISIT MARKET</Title></OverlayButton>
+            {/* <CardText>
               <small className="text-muted">Last updated 3 mins ago</small>
-            </CardText>
+            </CardText> */}
           </CardOverlay>
       </ProductCard>
      

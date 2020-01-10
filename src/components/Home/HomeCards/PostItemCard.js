@@ -7,24 +7,25 @@ import {
     Price,
     CardOverlay,
     DescriptionButton,
-    OverlayText
-  } from './Card_Styles';
+    OverlayButton
+  } from './Home_Card_Styles';
 import { CardText, CardBody, Collapse, Button } from "reactstrap";
-import Meats from '../../../imgs/meats.jpg';
+import {MdFileUpload} from 'react-icons/md'
+import Form from '../../../imgs/form.jpg'
 
-const PostItemCard= () => {
+const PostItemCard = (props) => {
 const [isOpen, setIsOpen] = useState(false);
 const toggle = () => setIsOpen(!isOpen);
 
     return (
     
         <ProductCard>
-        <ProductImg top width="100%" src={Meats} alt='Market' />
+        <ProductImg top width="100%" src={Form} alt='Market' />
         <CardOverlay>
-            <OverlayText>Description</OverlayText>
-            <CardText>
+            <OverlayButton><Title><MdFileUpload size='2em'/> POST ITEMS</Title></OverlayButton>
+            {/* <CardText>
               <small className="text-muted">Last updated 3 mins ago</small>
-            </CardText>
+            </CardText> */}
           </CardOverlay>
       </ProductCard>
      

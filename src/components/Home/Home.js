@@ -12,9 +12,9 @@ import {
 import Footer from '../Footer/Footer';
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
-const Home= () => {
+const Home= (props) => {
     const [user, setUser] = useState();
-
+    console.log('Props in Home',props);
     useEffect(() => {
         axiosWithAuth()
           .get("https://evendsapi.herokuapp.com/api/users/current")
@@ -35,8 +35,8 @@ const Home= () => {
             <Title>Welcome To Evends</Title>
         </Heading>
         <CardWrapper>
-            <MarketCard/>
-            <PostItemCard/>
+            <MarketCard props={props}/>
+            <PostItemCard props ={props}/>
         </CardWrapper>
       
        </Wrapper>
