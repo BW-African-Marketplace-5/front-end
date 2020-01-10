@@ -7,23 +7,22 @@ import {
   Price,
   CardOverlay,
   DescriptionButton,
-  OverlayText
+  OverlayText,
+  ProfileImg
 } from "./ItemCard_Styles";
-import { CardText, CardBody, Collapse, Button } from "reactstrap";
+import { CardText, CardBody, Collapse } from "reactstrap";
 import { GiGrain, GiMeat, GiFruitBowl, GiFruiting } from "react-icons/gi";
-import Fruits from '../../imgs/fruits.jpg';
-import Meats from '../../imgs/meats.jpg';
-import Vegetables from '../../imgs/vegetables.jpg';
-import Wheat from '../../imgs/wheat.jpg';
-import Other from '../../imgs/other.jpg';
-
+import Fruits from "../../imgs/fruits.jpg";
+import Meats from "../../imgs/meats.jpg";
+import Vegetables from "../../imgs/vegetables.jpg";
+import Wheat from "../../imgs/wheat.jpg";
+import Other from "../../imgs/other.jpg";
 
 const ItemCard = props => {
   const [iconState, setIcon] = useState();
   const [imgURL, setImg] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
 
   useEffect(() => {
     if (props.data.category === "Grains") {
@@ -42,7 +41,7 @@ const ItemCard = props => {
       setIcon(<GiFruitBowl />);
       setImg(Fruits);
     }
-    if(props.data.category === "Other"){
+    if (props.data.category === "Other") {
       setImg(Other);
     }
   }, [props.data.category]);
@@ -52,25 +51,27 @@ const ItemCard = props => {
       <Title>{props.data.name}</Title>
       <ProductImg top width="100%" src={imgURL} alt={props.data.name} />
       <CardOverlay>
-          <OverlayText>{props.data.description}</OverlayText>
-          <CardText>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </CardText>
-        </CardOverlay>
+        {props.data.image_url ? (
+          <ProfileImg src={props.data.image_url} />
+        ) : (
+          <div></div>
+        )}
+        <OverlayText>User: {props.data.username}</OverlayText>
+      </CardOverlay>
       <DescriptionButton onClick={toggle}>Description</DescriptionButton>
       <Collapse isOpen={isOpen}>
-      <CardBody>
-        {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
-        <SubTitle>
-          <img src={props.data.image_url}/>
-        </SubTitle>
-        <SubTitle>
-          Category: {iconState} {props.data.category}
-        </SubTitle>
-        <SubTitle>Market Area: {props.data.market_area}</SubTitle>
+        <CardBody>
+          {/* <SubTitle>Vendor: {props.data.username}</SubTitle> */}
+          {/* <SubTitle>
+            <img src={props.data.image_url} />
+          </SubTitle> */}
+          <SubTitle>
+            Category: {iconState} {props.data.category}
+          </SubTitle>
+          <SubTitle>Market Area: {props.data.market_area}</SubTitle>
           <SubTitle>Description: {props.data.description}</SubTitle>
-        <CardText></CardText>
-      </CardBody>
+          <CardText></CardText>
+        </CardBody>
       </Collapse>
       <Price>Price: {props.data.price}</Price>
     </ProductCard>

@@ -9,8 +9,7 @@ import {
   Title,
   SearchBar,
   Heading,
-  SearchInput,
-  AddButton
+  SearchInput
 } from "./Item_List_Styles";
 import { InputGroupAddon, InputGroupText, Spinner } from "reactstrap";
 import { FaSearch } from "react-icons/fa";
@@ -49,33 +48,33 @@ const ItemList = props => {
   if (searchTerm.length === 0) {
     listRender = (
       <>
-      <ItemWrapper>
-        {props.productData.map(item => (
-          <ItemCard
-            key={item.id}
-            data={item}
-            allData={props.productData}
-            username={props.productData.username}
-          />
-        ))}
-      </ItemWrapper>
-      <Footer/>
+        <ItemWrapper>
+          {props.productData.map(item => (
+            <ItemCard
+              key={item.id}
+              data={item}
+              allData={props.productData}
+              username={props.productData.username}
+            />
+          ))}
+        </ItemWrapper>
+        <Footer />
       </>
     );
   } else {
     listRender = (
       <>
-      <ItemWrapper>
-        {searchResults.map(item => (
-          <ItemCard
-            key={item.id}
-            data={item}
-            allData={props.productData}
-            username={props.productData.username}
-          />
-        ))}
-      </ItemWrapper>
-      <Footer/>
+        <ItemWrapper>
+          {searchResults.map(item => (
+            <ItemCard
+              key={item.id}
+              data={item}
+              allData={props.productData}
+              username={props.productData.username}
+            />
+          ))}
+        </ItemWrapper>
+        <Footer />
       </>
     );
   }
@@ -84,25 +83,34 @@ const ItemList = props => {
 
   return (
     <>
-      <Navbar market={true}/>
+      <Navbar market={true} />
       <Wrapper>
-      <Heading>
-        <Title>MARKET PLACE</Title>
-        <SearchBar>
-        <InputGroupAddon addonType="prepend">
-          <InputGroupText><FaSearch/></InputGroupText>
-        </InputGroupAddon>
-        <SearchInput
-            onChange={handleChanges}
-            value={searchTerm}
-            type="search"
-            placeholder="Search Products"
-            name="search"
-          />
-      </SearchBar>
-      </Heading>
-      {(props.isFetching) ? (<div><Spinner color="danger"/><br/><p>Loading...</p></div>) : (listRender)}
-     
+        <Heading>
+          <Title>MARKET PLACE</Title>
+          <SearchBar>
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <FaSearch />
+              </InputGroupText>
+            </InputGroupAddon>
+            <SearchInput
+              onChange={handleChanges}
+              value={searchTerm}
+              type="search"
+              placeholder="Search Products"
+              name="search"
+            />
+          </SearchBar>
+        </Heading>
+        {props.isFetching ? (
+          <div>
+            <Spinner color="danger" />
+            <br />
+            <p>Loading...</p>
+          </div>
+        ) : (
+          listRender
+        )}
       </Wrapper>
     </>
   );
