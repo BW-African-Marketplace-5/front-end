@@ -22,10 +22,7 @@ const toggle = () => setIsOpen(!isOpen);
         <ProductCard>
         <ProductImg top width="100%" src={Form} alt='Market' />
         <CardOverlay>
-            <OverlayButton><Title><MdFileUpload size='2em'/> POST ITEMS</Title></OverlayButton>
-            {/* <CardText>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </CardText> */}
+            <OverlayButton href='/item-form'><Title><MdFileUpload size='2em'/> VISIT MARKET</Title></OverlayButton>
           </CardOverlay>
       </ProductCard>
      

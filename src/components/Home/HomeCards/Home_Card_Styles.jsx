@@ -59,15 +59,12 @@ export const OverlayButton = styled.a`
   color:white;
   font-weight: 600;
   text-transform: uppercase;
-  text-decoration:none;
   background: #000000b8;
   border: 0;
   padding: 5%;
   width:50%;
   &:hover{
     background: #e33734;
-  }
-  h1{
     text-decoration:none;
   }
 `
