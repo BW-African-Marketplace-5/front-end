@@ -99,7 +99,7 @@ const AddItemForm = props => {
       setError(`Product Name Cannot Be Blank`);
       return false
     }
-    if(props.descriptions === ''){
+    if(props.description === ''){
       setError(`Description Cannot Be Blank`);
       return false
     }
@@ -111,7 +111,7 @@ const AddItemForm = props => {
       setError(`Market Area Cannot Be Blank`);
       return false
     }
-    if(props.Category === ''){
+    if(props.category === ''){
       setError(`Category Cannot Be Blank`);
       return false
     }
