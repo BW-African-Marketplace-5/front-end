@@ -7,9 +7,28 @@ import { Spinner } from "reactstrap";
 
 const DragDiv = styled.div`
   border: 1px dotted gray;
+  padding: 4%; 0%; 0; 0%;
+  color: #dc3545;
   &&:focus {
     outline: none !important;
   }
+  p {
+    margin-bottom: 0;
+  }
+`;
+
+const ImageDiv = styled.div`
+  color: #dc3545;
+  &&:focus {
+    outline: none !important;
+  }
+  p {
+    margin-bottom: 0;
+  }
+`;
+
+const UpP = styled.p`
+  color: black;
 `;
 
 const ImageUpload = ({ setImage }) => {
@@ -50,22 +69,26 @@ const ImageUpload = ({ setImage }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <DragDiv {...getRootProps()}>
+    <ImageDiv {...getRootProps()}>
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the files here ...</p>
+        <DragDiv>
+          <p>Drop the files here ...</p>
+        </DragDiv>
       ) : isFetching ? (
         <div>
           <Spinner color="danger" />
           <br />
-          <p>Uploading...</p>
+          <UpP>Uploading...</UpP>
         </div>
       ) : isUploaded ? (
         <p>Upload Successful</p>
       ) : (
-        <p>Drag or click here to upload Profile Photo</p>
+        <DragDiv>
+          <p>Drag or click here to upload profile photo</p>
+        </DragDiv>
       )}
-    </DragDiv>
+    </ImageDiv>
   );
 };
 
