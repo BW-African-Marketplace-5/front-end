@@ -44,10 +44,13 @@ const ImageUpload = ({ setImage }) => {
         let file = acceptedFiles[i];
         data.append("image", file);
         console.log(data, acceptedFiles);
+        const proxy = "https://cors-anywhere.herokuapp.com/";
       }
       axios(
         {
-          url: "https://api.imgur.com/3/upload",
+          url:
+            "https://cors-anywhere.herokuapp.com/" +
+            "https://api.imgur.com/3/upload",
           method: "post",
           data: data,
           headers: {
