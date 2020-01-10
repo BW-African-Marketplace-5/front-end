@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typed from "react-typed";
 import { MdAccountCircle } from "react-icons/md";
+import { connect } from "react-redux";
+import { fetchCurrentUser } from "../../actions/actions";
 import {
   Collapse,
   Navbar,
@@ -24,14 +26,16 @@ import logo from "../../imgs/evends.png";
 const Navigation = props => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  let user = props.user;
-  console.log("Navigation User:", props);
   //Typed JS Configuration
   var options = {
-    strings: [`WELCOME ${user}`],
+    strings: [`WELCOME ${props.userData.currentUsername}`],
     typeSpeed: 80,
     backSpeed: 80
   };
+
+  useEffect(() => {
+    props.fetchCurrentUser();
+  }, []);
 
   return (
     <div>
@@ -43,17 +47,35 @@ const Navigation = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <LinkWrapper>
-              {(props.home) ? (<MenuLink href="/home" active>HOME</MenuLink>) : (<MenuLink href="/home">HOME</MenuLink>)}
+              {props.home ? (
+                <MenuLink href="/home" active>
+                  HOME
+                </MenuLink>
+              ) : (
+                <MenuLink href="/home">HOME</MenuLink>
+              )}
             </LinkWrapper>
             <LinkWrapper>
-            {(props.market) ? (<MenuLink href="/item-list" active>MARKET</MenuLink>) : (<MenuLink href="/item-list">MARKET</MenuLink>)}
+              {props.market ? (
+                <MenuLink href="/item-list" active>
+                  MARKET
+                </MenuLink>
+              ) : (
+                <MenuLink href="/item-list">MARKET</MenuLink>
+              )}
             </LinkWrapper>
             <LinkWrapper>
-            {(props.postItems) ? (<MenuLink href="/item-form" active>POST ITEMS</MenuLink>) : (<MenuLink href="/item-form">POST ITEMS</MenuLink>)}
+              {props.postItems ? (
+                <MenuLink href="/item-form" active>
+                  POST ITEMS
+                </MenuLink>
+              ) : (
+                <MenuLink href="/item-form">POST ITEMS</MenuLink>
+              )}
             </LinkWrapper>
           </Nav>
           <RightText>
-            {props.user ? (
+            {props.userData.currentUsername ? (
               <Typed
                 style={{ marginRight: "10px", textTransform: "uppercase" }}
                 strings={options.strings}
@@ -88,4 +110,13 @@ const Navigation = props => {
   );
 };
 
-export default Navigation;
+export default connect(
+  state => {
+    return {
+      userData: state.userData,
+      isFetching: state.isFetching,
+      error: state.error
+    };
+  },
+  { fetchCurrentUser }
+)(Navigation);

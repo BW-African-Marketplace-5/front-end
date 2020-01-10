@@ -24,6 +24,7 @@ const ImageUpload = ({ setImage }) => {
       for (let i = 0; i < acceptedFiles.length; i++) {
         let file = acceptedFiles[i];
         data.append("image", file);
+        console.log(data, acceptedFiles);
       }
       axios(
         {

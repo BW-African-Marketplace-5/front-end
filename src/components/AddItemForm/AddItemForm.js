@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { fetchCurrentUser } from "../../actions/actions";
 import {
   Wrapper,
   FormWrapper,
@@ -63,7 +64,7 @@ const AddItemForm = props => {
 
   return (
     <div>
-      <LoggedinNav user={currentUser.currentUsername} postItems={true} />
+      <LoggedinNav postItems={true} />
       <Wrapper>
         <FormWrapper>
           <TopBar>
