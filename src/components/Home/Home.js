@@ -1,6 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import Carousel from "../Carousel/Carousel";
 import Navbar from "../Navbar/LoggedinNav";
+import MarketCard from './HomeCards/MarketCard';
+import PostItemCard from './HomeCards/PostItemCard';
+import {
+    Wrapper,
+    Heading,
+    Title,
+    CardWrapper
+} from './Home_Styles'
 import Footer from '../Footer/Footer';
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
@@ -22,7 +30,17 @@ const Home= () => {
     return (
         <>
        <Navbar user={user} home={true}/>
-       <Carousel/>
+       <Wrapper>
+        <Heading>
+            <Title>Welcome To Evends</Title>
+        </Heading>
+        <CardWrapper>
+            <MarketCard/>
+            <PostItemCard/>
+        </CardWrapper>
+      
+       </Wrapper>
+       {/* <Carousel/> */}
        <Footer/>
        </>
     );

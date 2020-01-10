@@ -28,6 +28,7 @@ export const Title = styled(CardTitle)`
     margin-bottom:0;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    z-index:1;
 `
 export const Price = styled(CardSubtitle)`
     color:white;
@@ -35,6 +36,7 @@ export const Price = styled(CardSubtitle)`
     font-weight:bold;
     font-size: 1rem;
     padding: 2%;
+    z-index:1;
 `
 export const SubTitle = styled(CardSubtitle)`
     color:#e33734;

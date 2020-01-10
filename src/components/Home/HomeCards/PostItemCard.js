@@ -1,21 +1,33 @@
-import React from 'react';
-import { Card, CardTitle, CardText, CardImg, CardImgOverlay } from 'reactstrap';
+import React, {useState} from 'react';
+import {
+    ProductImg,
+    ProductCard,
+    Title,
+    SubTitle,
+    Price,
+    CardOverlay,
+    DescriptionButton,
+    OverlayText
+  } from './Card_Styles';
+import { CardText, CardBody, Collapse, Button } from "reactstrap";
+import Meats from '../../../imgs/meats.jpg';
 
-const PostItemCard = () => {
+const PostItemCard= () => {
+const [isOpen, setIsOpen] = useState(false);
+const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div>
-            <Card inverse>
-            <CardImg width="100%" src="/assets/318x270.svg" alt="Card image cap" />
-            <CardImgOverlay>
-                <CardTitle>Card Title</CardTitle>
-                <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-                <CardText>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </CardText>
-            </CardImgOverlay>
-            </Card>
-      </div>
+    
+        <ProductCard>
+        <ProductImg top width="100%" src={Meats} alt='Market' />
+        <CardOverlay>
+            <OverlayText>Description</OverlayText>
+            <CardText>
+              <small className="text-muted">Last updated 3 mins ago</small>
+            </CardText>
+          </CardOverlay>
+      </ProductCard>
+     
     );
 }
 
