@@ -35,8 +35,8 @@ const Home= (props) => {
             <Title>Welcome To Evends</Title>
         </Heading>
         <CardWrapper>
-            <MarketCard props={props}/>
-            <PostItemCard props ={props}/>
+            <MarketCard history={props.history}/>
+            <PostItemCard history ={props.history}/>
         </CardWrapper>
       
        </Wrapper>
