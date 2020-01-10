@@ -4,13 +4,17 @@ import {
   FETCH_PRODUCTS_FAILURE,
   CREATE_PRODUCT_START,
   CREATE_PRODUCT_SUCCESS,
-  CREATE_PRODUCT_FAILURE
+  CREATE_PRODUCT_FAILURE,
+  FETCH_USER_LOADING,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAILURE
 } from "../actions/actions";
 
 const initialState = {
   productData: [],
   error: null,
-  isFetching: false
+  isFetching: false,
+  userData: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,7 +31,6 @@ const reducer = (state = initialState, action) => {
         productData: action.payload,
         error: null,
         isFetching: false
-
       };
     case FETCH_PRODUCTS_FAILURE:
       return {
@@ -51,6 +54,26 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         productData: [],
+        error: action.payload
+      };
+    case FETCH_USER_LOADING:
+      return {
+        ...state,
+        isFetching: true,
+        error: null
+      };
+    case FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        userData: action.payload,
+        error: null,
+        isFetching: false
+      };
+    case FETCH_USER_FAILURE:
+      return {
+        ...state,
+        userData: {},
+        isFetching: false,
         error: action.payload
       };
     default:
