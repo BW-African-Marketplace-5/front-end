@@ -2,6 +2,8 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import styled from "styled-components";
+import {Alert} from 'reactstrap';
+import {FaUpload} from 'react-icons/fa'
 
 import { Spinner } from "reactstrap";
 
@@ -85,10 +87,12 @@ const ImageUpload = ({ setImage }) => {
           <UpP>Uploading...</UpP>
         </div>
       ) : isUploaded ? (
-        <p>Upload Successful</p>
+        <Alert color="success">
+        Image Upload Successful!
+      </Alert>
       ) : (
         <DragDiv>
-          <p>Drag or click here to upload profile photo</p>
+          <FaUpload size='2em'/><br></br><p>Drag or click here to upload profile photo</p>
         </DragDiv>
       )}
     </ImageDiv>
