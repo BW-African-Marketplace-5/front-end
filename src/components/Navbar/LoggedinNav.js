@@ -93,7 +93,7 @@ const Navigation = props => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>Post Items</DropdownItem>
-                <DropdownItem>My Posts</DropdownItem>
+                <DropdownItem>Marketplace</DropdownItem>
                 <DropdownItem divider />
                 <LogOut
                   onClick={() => window.localStorage.clear("token")}

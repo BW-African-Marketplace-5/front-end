@@ -48,28 +48,11 @@ const Navigation = (props) => {
               {(props.active) ? (<MenuLink href="/" className='active'>HOME</MenuLink>) : (<MenuLink href="/" >HOME</MenuLink>)}
             </LinkWrapper>
             <LinkWrapper>
-              <MenuLink href="https://github.com/reactstrap/reactstrap">ABOUT</MenuLink>
+              <MenuLink href="/">ABOUT</MenuLink>
             </LinkWrapper>
             <LinkWrapper>
-              <MenuLink href="https://github.com/reactstrap/reactstrap">OUR MISSION</MenuLink>
+              <MenuLink href="/">OUR MISSION</MenuLink>
             </LinkWrapper>
-            {/* <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
-                </DropdownItem>
-                <DropdownItem>
-                  Option 2
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  Reset
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown> */}
           </Nav>
         <RightText><Typed style={{marginRight:'10px'}} strings={options.strings} typeSpeed={options.typeSpeed} backSpeed={options.backSpeed}loop/>IN AFRICA'S <b><i>NEWEST</i></b> MARKETPLACE</RightText>
         </Collapse>

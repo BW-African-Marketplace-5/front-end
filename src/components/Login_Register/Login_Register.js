@@ -104,7 +104,6 @@ const Login_Register = props => {
       axiosWithAuth()
       .post("https://evendsapi.herokuapp.com/api/login", formValue) //Passes form value to API
       .then(response => {
-        alert(response.data.message); //Alerts User of Login
         localStorage.setItem("token", response.data.token);
         props.history.push("/home");
       })
