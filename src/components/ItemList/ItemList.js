@@ -48,6 +48,7 @@ const ItemList = props => {
   var listRender;
   if (searchTerm.length === 0) {
     listRender = (
+      <>
       <ItemWrapper>
         {props.productData.map(item => (
           <ItemCard
@@ -58,9 +59,12 @@ const ItemList = props => {
           />
         ))}
       </ItemWrapper>
+      <Footer/>
+      </>
     );
   } else {
     listRender = (
+      <>
       <ItemWrapper>
         {searchResults.map(item => (
           <ItemCard
@@ -71,6 +75,8 @@ const ItemList = props => {
           />
         ))}
       </ItemWrapper>
+      <Footer/>
+      </>
     );
   }
 
@@ -96,7 +102,7 @@ const ItemList = props => {
       </SearchBar>
       </Heading>
       {(props.isFetching) ? (<div><Spinner color="danger"/><br/><p>Loading...</p></div>) : (listRender)}
-        {(props.isFetching) ? <div></div> : <Footer />}
+     
       </Wrapper>
     </>
   );

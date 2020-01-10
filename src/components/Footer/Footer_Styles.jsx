@@ -10,6 +10,7 @@ export const FooterContainer = styled.div`
     p{
         color:white;
         font-weight:bold;
+        margin-bottom: 0 !important;
     }
 
 `
