@@ -46,7 +46,7 @@ export const SubTitle = styled(CardSubtitle)`
     margin: 1%;
 `
 export const ProductImg = styled.img`
-   opacity: 0.6;
+   
 `
 export const CardOverlay = styled (CardImgOverlay)`
     display:flex;

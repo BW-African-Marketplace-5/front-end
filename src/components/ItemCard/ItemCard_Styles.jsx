@@ -14,7 +14,7 @@ export const ItemWrapper = styled.div`
 export const ProductCard = styled(Card)`
   width: 25%;
   margin: 1%;
-  background: black;
+  background: #f8f9fa!important;
   border: none;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -46,7 +46,6 @@ export const SubTitle = styled(CardSubtitle)`
 `
 export const ProductImg = styled.img`
    height: 250px;
-   opacity: 0.7;
 `
 export const CardOverlay = styled (CardImgOverlay)`
     display:flex;
