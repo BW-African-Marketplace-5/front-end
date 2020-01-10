@@ -10,7 +10,7 @@ import {
   TopBar,
   Heading
 } from "./Add_Item_Form_Styles";
-import {Input, Label} from 'reactstrap';
+import {Input, Label, Alert} from 'reactstrap';
 
 import LoggedinNav from "../Navbar/LoggedinNav";
 import Footer from "../Footer/Footer";
@@ -34,7 +34,17 @@ const AddItemForm = props => {
     currentUsername: ""
   });
   const [image, setImage] = useState("");
-
+  const [error, setError] = useState(''); //Error State
+  const [spinner, setSpin] = useState(false); //Spinner
+  const [successAlert, setSuccessAlert] = useState(false); //Alert State
+  const [visibleWarning, setWarning] = useState(false); //Alert State
+  const [valid, setValid] = useState(false);
+  const [invalid, setInValid] = useState(false);
+  const onDismiss = () => {
+    setSuccessAlert(false);
+    setWarning(false);
+}
+  console.log('the product form values are:',newProduct);
   useEffect(() => {
     axiosWithAuth()
       .get("https://evendsapi.herokuapp.com/api/users/current")
@@ -52,13 +62,59 @@ const AddItemForm = props => {
       [e.target.name]: e.target.value,
       image_url: image
     });
+    if(e.target.value === ''){
+      e.target.classList.remove('is-valid')
+    }else{
+      e.target.classList.add('is-valid')
+      setInValid(false);
+    }
+    console.log('The Target Is Valid:', e.target.value);
   };
-
-  const handleSubmit = () => {
-    props.history.push("/item-list");
-    props.createProduct(newProduct, currentUser.currentUserId);
+  //handles submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValid = validateProduct(newProduct);
+    (console.log('Uploading Product...', newProduct));
+    if(isValid){
+      setSpin(true);
+      setSuccessAlert(true);
+      setWarning(false);
+      props.history.push("/item-list");
+      props.createProduct(newProduct, currentUser.currentUserId);
+    }else{
+      setWarning(true);
+    }
   };
-
+  //validates form
+  const validateProduct = (props) =>{
+    console.log('Register Validation Props:', props);
+    if(props.name === '' && props.descriptions === '' && props.price === '' && props.market_area === '' && props.category === '' ){
+      setError(`Fields Cannot Be Blank`);
+      setValid(false);
+      return false;
+    }
+    if(props.name === ''){
+      setError(`Product Name Cannot Be Blank`);
+      return false
+    }
+    if(props.descriptions === ''){
+      setError(`Description Cannot Be Blank`);
+      return false
+    }
+    if(props.price === ''){
+      setError(`Price Cannot Be Blank`);
+      return false
+    }
+    if(props.market_area === ''){
+      setError(`Market Area Cannot Be Blank`);
+      return false
+    }
+    if(props.Category === ''){
+      setError(`Category Cannot Be Blank`);
+      return false
+    }
+    return true;
+  }
   console.log(newProduct);
   console.log(currentUser.currentUserId);
   console.group(`image: ${image}`);
@@ -84,6 +140,8 @@ const AddItemForm = props => {
                   placeholder="Beans"
                   value={newProduct.product}
                   onChange={handleChanges}
+                  valid={valid}
+                  invalid={invalid}
                 />
               </InputWrapper>
               <InputWrapper>
@@ -94,6 +152,7 @@ const AddItemForm = props => {
                   placeholder="5 pounds/Kidney"
                   value={newProduct.description}
                   onChange={handleChanges}
+                  valid={valid}
                 />
               </InputWrapper>
               <InputWrapper>
@@ -104,6 +163,7 @@ const AddItemForm = props => {
                   placeholder="300.00 RWF"
                   value={newProduct.price}
                   onChange={handleChanges}
+                  valid={valid}
                 />
               </InputWrapper>
               <InputWrapper>
@@ -114,6 +174,7 @@ const AddItemForm = props => {
                   placeholder="Vegetables"
                   value={newProduct.category}
                   onChange={handleChanges}
+                  valid={valid}
                 >
                   <option>Choose Category</option>
                   <option>Vegetables</option>
@@ -131,6 +192,7 @@ const AddItemForm = props => {
                   placeholder="Rwanda"
                   value={newProduct.market_area}
                   onChange={handleChanges}
+                  valid={valid}
                 >
                   <option>Choose Location</option>
                   <option>Rwanda</option>
@@ -143,6 +205,10 @@ const AddItemForm = props => {
                 <ImageUpload setImage={setImage} />
               </InputWrapper>
               <Submit>Submit</Submit>
+              <br></br>
+              <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+                {error}
+            </Alert>
             </div>
           </Form>
         </FormWrapper>
