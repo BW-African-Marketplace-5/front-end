@@ -85,7 +85,7 @@ const ImageUpload = ({ setImage }) => {
         <p>Upload Successful</p>
       ) : (
         <DragDiv>
-          <p>Drag or click here to upload Profile Photo</p>
+          <p>Drag or click here to upload profile photo</p>
         </DragDiv>
       )}
     </ImageDiv>
