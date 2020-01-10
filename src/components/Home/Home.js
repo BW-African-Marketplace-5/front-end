@@ -12,7 +12,11 @@ const Home = props => {
       <Navbar home={true} />
       <Wrapper>
         <Heading>
+<<<<<<< HEAD
           <Title>Welcome To Evends</Title>
+=======
+            <Title>WELCOME TO EVENDS</Title>
+>>>>>>> 6e61da49c9e37bdfbe0103ab4530eacdd8d6b7b1
         </Heading>
         <CardWrapper>
           <MarketCard history={props.history} />

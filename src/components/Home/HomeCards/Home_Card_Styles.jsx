@@ -42,7 +42,9 @@ export const SubTitle = styled(CardSubtitle)`
   font-size: 1rem;
   margin: 1%;
 `;
-export const ProductImg = styled.img``;
+export const ProductImg = styled.img`
+  opacity: 0.35;
+`;
 export const CardOverlay = styled(CardImgOverlay)`
   display: flex;
   justify-content: center;
