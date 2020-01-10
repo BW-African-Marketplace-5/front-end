@@ -12,6 +12,7 @@ export const Submit = styled(Button)`
   border-radius: 0;
   background-color: #e33734;
   border: solid 2px #ffffff47;
+  margin-bottom: 5%;
   :hover {
     background-color: #000000db;
     border: solid 2px #ffffff47;

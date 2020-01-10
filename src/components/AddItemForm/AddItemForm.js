@@ -79,7 +79,9 @@ const AddItemForm = props => {
       setSpin(true);
       setSuccessAlert(true);
       setWarning(false);
-      props.history.push("/item-list");
+      setTimeout(function(){ 
+        props.history.push("/item-list");
+      }, 3000);
       props.createProduct(newProduct, currentUser.currentUserId);
     }else{
       setWarning(true);
@@ -206,6 +208,9 @@ const AddItemForm = props => {
               </InputWrapper>
               <Submit>Submit</Submit>
               <br></br>
+              <Alert color="success" isOpen={successAlert} toggle={onDismiss}>
+                    Item Posted Successfully!
+                </Alert>
               <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
                 {error}
             </Alert>

@@ -65,7 +65,7 @@ export const OverlayText = styled(CardText)`
   background: #000000b8;
   padding: 5%;
 `;
-export const DescriptionButton = styled(Button)`
+export const DescriptionButton = styled.div`
   background: white;
   color: #e33734;
   width: 100%;
@@ -73,9 +73,13 @@ export const DescriptionButton = styled(Button)`
   border-radius: 0;
   font-weight: 600;
   z-index: 1;
+  padding-bottom: 3%;
   &:hover {
     background: white;
     color: #e33734;
+  }
+  &:focus{
+    border: none;
   }
 `;
 
