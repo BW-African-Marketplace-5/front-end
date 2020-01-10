@@ -20,7 +20,7 @@ const Home= (props) => {
        <Navbar home={true}/>
        <Wrapper>
         <Heading>
-            <Title>Welcome To Evends</Title>
+            <Title>WELCOME TO EVENDS</Title>
         </Heading>
         <CardWrapper>
             <MarketCard history={props.history}/>
